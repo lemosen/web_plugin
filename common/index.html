@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>lemosen web common plugin</title>
+    <link rel="stylesheet" href="css/lemosen.css"/>
     <script src="js/lemosen.js"></script>
 </head>
-<body>
-    <div>welcome to lemosen web common plugin</div>
-    <div onclick="lemosen.alert()">
-        toast
-    </div>
+<body style="background: #dce8e8">
+<div>welcome to lemosen web common plugin</div>
+<div onclick="lemosen.alert('asdss',function(param) {
+  console.log('i sure')
+  console.log(param);
+                      },{a:1})">
+    alert
+</div>
 </body>
 </html>

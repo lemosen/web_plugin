@@ -1,0 +1,45 @@
+.lemosen-alert {
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    -webkit-overflow-scrolling: touch;
+    background-color: rgba(8, 8, 8, 0.65);
+    outline: 0;
+}
+
+.lemosen-alert-body {
+    height: 12vh;
+    border-radius: 5px;
+    position: relative;
+    top: 20%;
+    margin: 0 auto;
+    width: 200px;
+    background: white;
+    text-align: center;
+}
+
+.lemosen-alert-head {
+    padding: 1vh;
+}
+
+.lemosen-alert-content {
+    padding: 1vh;
+}
+
+.lemosen-alert-buttons {
+}
+
+.lemosen-alert-button {
+    padding: 1vh;
+}
+
+.lemosen-alert-sure-button {
+
+}
+
+.lemosen-alert-cancel-button {
+}
