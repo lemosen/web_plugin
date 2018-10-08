@@ -1,6 +1,6 @@
 function test() {
     alert("test")
 }
-let Lemosen=function test() {
+Lemosen=function test() {
     alert("test")
 }
