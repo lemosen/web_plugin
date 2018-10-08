@@ -31,8 +31,8 @@
                     arguments[5] = '提示'
                 }
 
-                lemosen.saveCallBackParam(arguments[2] ? arguments[2] : {});
-                lemosen.saveCallBackParam(arguments[4] ? arguments[4] : {});
+                lemosen.saveCallBackParam(arguments[2] ? arguments[2] : {}, true);
+                lemosen.saveCallBackParam(arguments[4] ? arguments[4] : {}, false);
 
                 let htmlDivElement = document.createElement('div');
                 htmlDivElement.classList.add(['lemosen-alert'])
@@ -53,6 +53,9 @@
                 document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-alert').item(0))
             },
             alertCancel: function (fun) {
+                if (window.lemosen.prototype.cancelCallBackParam) {
+                    fun(window.lemosen.prototype.cancelCallBackParam)
+                }
                 document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-alert').item(0))
             },
             toast: function () {
