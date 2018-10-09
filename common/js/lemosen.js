@@ -275,15 +275,15 @@
                     //     '</p>' +
                     //     '</div>' +
                     //     '</div>';
-                    let html='<div>asd</div>'
+                    let c='<div style="width: 100px;height: 100px;background-color: red">asd</div>'
                     // // c add to div
-                    // if (document.body.insertAdjacentHTML) {
-                    //     id(addDomName).insertAdjacentHTML('beforeend', c)
-                    // } else {
-                    //     id(addDomName).innerHTML += c
-                    // }
+                    if (document.body.insertAdjacentHTML) {
+                        id(addDomName).insertAdjacentHTML('beforeend', c)
+                    } else {
+                        id(addDomName).innerHTML += c
+                    }
                     // document.body.insertAdjacentHTML('beforeend', htmlDivElement)
-                    id(addDomName).innerHTML +=html
+                    // id(addDomName).innerHTML +=html
                 },
                 /**
                  * mixin
