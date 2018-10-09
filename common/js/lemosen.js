@@ -2,6 +2,11 @@
 
     window.lemosen = (function () {
         return {
+            func:{
+              success:function () {
+
+              }
+            },
             /**
              * arguments
              * 0 content                require
@@ -12,14 +17,14 @@
              * 5 title
              */
             alert1: function () {
+                console.log(arguments);
+                this.func.success=arguments[1]
                 arguments[5] = '提示'
                 // document.body.innerHTML += "<div class=\"lemosen-popup-body\"><div class=\"lemosen-popup-head\">提示</div><div class=\"lemosen-popup-content\">" + arguments[0] + "</div></div>"
-                document.body.innerHTML += '<div class="lemosen-popup-body" onclick="lemosen.alert2('+arguments[1]+')"><div class="lemosen-popup-head">' + arguments[5] + '</div><div class="lemosen-popup-content">' + arguments[0] + '</div></div>'
-                this.alert2()
+                document.body.innerHTML += '<div class="lemosen-popup-body" onclick="lemosen.alert2()"><div class="lemosen-popup-head">' + arguments[5] + '</div><div class="lemosen-popup-content">' + arguments[0] + '</div></div>'
             },
-            alert2:function(e){
-                e()
-                alert("Asd")
+            alert2: function () {
+                this.func.success()
             },
             // alert: function () {
             //     if (arguments[3] === undefined) {

@@ -18,8 +18,8 @@
     }
 
     function openAlert() {
-        lemosen.alert1('asdss', function () {
-alert("dd")
+        lemosen.alert1('asdss', function (e) {
+            alert("ASd")
         })
     }
 
@@ -29,11 +29,11 @@ alert("dd")
     }
 
     function openModal() {
-        // lemosen.modal('asdss', function (param) {
-        //     console.log('i sure')
-        //     console.log(param);
-        // }, {a: 1}, function () {
-        // }, {}, 50)
+        lemosen.modal('asdss', function (param) {
+            console.log('i sure')
+            console.log(param);
+        }, {a: 1}, function () {
+        }, {}, 50)
     }
 </script>
 <button onclick="test()">
