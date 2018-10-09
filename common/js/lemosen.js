@@ -408,7 +408,7 @@
 
                     // let htmlDivElement = lemosenCore.initPopup()
 
-                    document.body.innerHTML += = '<div class="lemosen-popup-body">' +
+                    document.body.innerHTML +=  '<div class="lemosen-popup-body">' +
                         '<div class="lemosen-popup-head">' + arguments[5] + '</div>' +
                         '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
                         '<p class="lemosen-popup-buttons">' +
