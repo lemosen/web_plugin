@@ -76,20 +76,20 @@
              * 4 cancelCallBackParam
              * 5 title
              */
-            alert: function () {
+            alert: function (a,b,c,d,f,g) {
                 alert("test3")
-                if (arguments[3] === undefined) {
-                    arguments[3] = function () {
+                if (d === undefined) {
+                    d = function () {
                     };
                 }
-                if (arguments[5] === undefined) {
-                    arguments[5] = '提示';
+                if (g === undefined) {
+                    g = '提示';
                 }
 
                 lemosenCore.initPopup();
                 let htmlDivElement = '<div class="lemosen-popup"><div class="lemosen-popup-body">' +
-                    '<div class="lemosen-popup-head">' + arguments[5] + '</div>' +
-                    '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
+                    '<div class="lemosen-popup-head">' + g + '</div>' +
+                    '<div class="lemosen-popup-content">' + a + '</div>' +
                     '<p class="lemosen-popup-buttons">' +
                     // '<span class="lemosen-popup-button lemosen-popup-sure-button" onclick="lemosenCore.alertSure(' + arguments[1] + ')">确定</span>' +
                     // '<span class="lemosen-popup-button lemosen-popup-cancel-button" onclick="lemosenCore.alertCancel(' + arguments[3] + ')">取消</span>' +
