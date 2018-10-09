@@ -83,7 +83,7 @@
              * 5 title
              */
             alert: function () {
-
+                alert("test2")
                 if (arguments[3] === undefined) {
                     arguments[3] = function () {
                     }
