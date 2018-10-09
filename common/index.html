@@ -11,15 +11,29 @@
 <h1>welcome to lemosen web common plugin</h1>
 <script src="js/lemosen.js"></script>
 <script>
-
+    var config = {
+        mask: .3,
+        skin: 'ios',
+        an: true
+    };
+    xxy.config(config)
     function test() {
-
+        xxy.popup('小提示','您觉得xxy弹窗做的如何？','好','不好',function(e){
+            if(e==0){
+                xxy.toast('谢谢的你支持！');
+            }else{
+                xxy.toast('xxy会继续加油↖(^ω^)↗')
+            }
+        })
     }
 
     function openAlert() {
-        lemosen.alert('asdss', function () {
+        alert(JSON.stringify(window.lemosen.test))
+        window.lemosen.alert('asdss', function () {
 
-        })
+        }, undefined, function () {
+
+        }, undefined)
     }
 
     function aaa(param) {
