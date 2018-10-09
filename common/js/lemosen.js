@@ -398,9 +398,25 @@
 
                 },
                 alert1: function () {
-                    alert("1");
-                    var html = "<div style='width: 100px;height: 100px;background-color: red'>asd</div>"
-                    document.body.innerHTML +=html
+                    if (arguments[3] === undefined) {
+                        arguments[3] = function () {
+                        }
+                    }
+                    if (arguments[5] === undefined) {
+                        arguments[5] = '提示'
+                    }
+
+                    // let htmlDivElement = lemosenCore.initPopup()
+
+                    document.body.innerHTML += = '<div class="lemosen-popup-body">' +
+                        '<div class="lemosen-popup-head">' + arguments[5] + '</div>' +
+                        '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
+                        '<p class="lemosen-popup-buttons">' +
+                        // '<span class="lemosen-popup-button lemosen-popup-sure-button" onclick="lemosenCore.alertSure(' + arguments[1] + ')">确定</span>' +
+                        // '<span class="lemosen-popup-button lemosen-popup-cancel-button" onclick="lemosenCore.alertCancel(' + arguments[3] + ')">取消</span>' +
+                        '</p>' +
+                        '</div>'
+                    // lemosenCore.createDocument(htmlDivElement)
                 },
 
                 /**
