@@ -66,7 +66,7 @@
     }();
     window.lemosen = function () {
         var _init = {
-
+            test:'test',
             /**
              * arguments
              * 0 content                require
