@@ -8,18 +8,27 @@
 </head>
 <body style="background: #dce8e8">
 <h1>welcome to lemosen web common plugin</h1>
-<button onclick="lemosen.alert('asdss',function(param) {
-  console.log('i sure')
-  console.log(param);
-                      },{a:1})">
+<script>
+    function openAlert() {
+        lemosen.alert('asdss', function (param) {
+            console.log('i sure')
+            console.log(param);
+        }, {a: 1})
+    }
+
+    function openModal() {
+        lemosen.modal('asdss', function (param) {
+            console.log('i sure')
+            console.log(param);
+        }, {a: 1}, function () {
+        }, {}, 50)
+    }
+</script>
+<button onclick="openAlert()">
     alert
 </button>
-<button onclick="lemosen.modal('asdss',function(param) {
-  console.log('i sure')
-  console.log(param);
-                      },{a:1},function() {
-
-                      },{},50)">modal
+<button onclick="openModal()">
+    modal
 </button>
 <h2></h2>
 <h2></h2>
