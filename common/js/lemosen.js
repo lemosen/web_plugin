@@ -3,10 +3,11 @@
  * email : 28462961@qq.com
  */
 (function () {
-    
+    alert("asd")
     // document.documentElement.style.overflow = 'hidden'
     // document.body.style.overflow = 'hidden'
     window.lemosen = (function () {
+        alert("asd1")
         var _init = {
             prototype: {
                 // screenWidth: window.screen.width,
@@ -17,6 +18,7 @@
                 modalParam: undefined
             },
             initPopup: function () {
+                alert("asd2")
                 lemosen.saveCallBackParam(arguments[2] ? arguments[2] : {}, true);
                 lemosen.saveCallBackParam(arguments[4] ? arguments[4] : {}, false);
 
