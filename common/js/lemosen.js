@@ -418,8 +418,8 @@
                     //     '</div>'
                     // lemosenCore.createDocument(htmlDivElement)
                     // alert("1");
-                    var html = "<div class=\"lemosen-popup-body\"><div class=\"lemosen-popup-head\">提示</div></div>"
-                    document.body.innerHTML +=html
+                    var html = "<div class=\"lemosen-popup-body\"><div class=\"lemosen-popup-head\">提示</div><div class=\"lemosen-popup-content\">" + arguments[0] + "</div></div>"
+                    document.body.innerHTML += html
                 },
 
                 /**
