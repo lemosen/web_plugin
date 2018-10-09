@@ -14,10 +14,11 @@
             alert1: function () {
                 arguments[5] = '提示'
                 // document.body.innerHTML += "<div class=\"lemosen-popup-body\"><div class=\"lemosen-popup-head\">提示</div><div class=\"lemosen-popup-content\">" + arguments[0] + "</div></div>"
-                document.body.innerHTML += '<div class="lemosen-popup-body" onclick="this.alert2()"><div class="lemosen-popup-head">' + arguments[5] + '</div><div class="lemosen-popup-content">' + arguments[0] + '</div></div>'
+                document.body.innerHTML += '<div class="lemosen-popup-body" onclick="lemosen.alert2('+arguments[1]+')"><div class="lemosen-popup-head">' + arguments[5] + '</div><div class="lemosen-popup-content">' + arguments[0] + '</div></div>'
                 this.alert2()
             },
-            alert2:function(){
+            alert2:function(e){
+                e()
                 alert("Asd")
             },
             // alert: function () {
