@@ -581,14 +581,14 @@
 
     window.lemosen = (function () {
         var _init = {
-            prototype: {
-                // screenWidth: window.screen.width,
-                // screenHeight: window.screen.height,
-                sureCallBackParam: {},
-                cancelCallBackParam: {},
-                modalDismiss: {},
-                modalParam: undefined
-            },
+            // prototype: {
+            //     // screenWidth: window.screen.width,
+            //     // screenHeight: window.screen.height,
+            //     sureCallBackParam: {},
+            //     cancelCallBackParam: {},
+            //     modalDismiss: {},
+            //     modalParam: undefined
+            // },
             initPopup: function () {
                 // lemosen.saveCallBackParam(arguments[2] ? arguments[2] : {}, true);
                 // lemosen.saveCallBackParam(arguments[4] ? arguments[4] : {}, false);
@@ -597,7 +597,7 @@
             },
             saveCallBackParam(param, isSure) {
                 if (param && param !== {}) {
-                    isSure ? this.prototype.sureCallBackParam = param : this.prototype.cancelCallBackParam = param;
+                    // isSure ? this.prototype.sureCallBackParam = param : this.prototype.cancelCallBackParam = param;
                 }
             },
             createDocument: function (htmlStr) {
@@ -652,7 +652,7 @@
                 let g = '提示';
                 // }
 
-                this.initPopup();
+                // this.initPopup();
                 let htmlDivElement = '<div class="lemosen-popup"><div class="lemosen-popup-body">' +
                     '<div class="lemosen-popup-head">' + g + '</div>' +
                     '<div class="lemosen-popup-content">' + a + '</div>' +
@@ -663,7 +663,7 @@
                     '</div>' +
                     '</div>';
 
-                window.parent.document.getElementById('asda').insertAdjacentHTML('beforeend', htmlDivElement)
+                document.body.insertAdjacentHTML('beforeend', htmlDivElement)
             },
 
             toast: function () {
