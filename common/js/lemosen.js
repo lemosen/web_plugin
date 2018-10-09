@@ -3,8 +3,8 @@
  * email : 28462961@qq.com
  */
 (function () {
-    document.documentElement.style.overflow = 'hidden'
-    document.body.style.overflow = 'hidden'
+    // document.documentElement.style.overflow = 'hidden'
+    // document.body.style.overflow = 'hidden'
     // window.lemosenCore = function () {
     //     return {
     //         prototype: {
