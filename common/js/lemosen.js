@@ -256,7 +256,7 @@
 
             // init return api
             , _init = {
-                alert: function (a, b) {
+                alert1: function (a, b) {
                     // if (d === undefined) {
                     //     d = function () {
                     //     };
