@@ -32,7 +32,12 @@
      * parent 是为了兼容iframe
      */
     function id(a) { return window.parent.document.getElementById(a) }
-
+// Avoid multiple imports, resulting in a different version of the first class
+    // 保证只运行一个
+    if (typeof window.lemosen == 'object') {
+        console.error('Close the global object of XXY--xxy')
+        return false
+    }
     // document.documentElement.style.overflow = 'hidden'
     // document.body.style.overflow = 'hidden'
     window.lemosen = (function () {
@@ -152,8 +157,8 @@
             //     lemosen.createDocument(htmlDivElement);
             // }
 
-        };
+        }
         return _init
 
-    })();
-})();
+    })()
+})()
