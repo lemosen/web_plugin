@@ -276,9 +276,14 @@
                     //     '</div>' +
                     //     '</div>';
                     let html='<div>asd</div>'
-
+                    // // c add to div
+                    // if (document.body.insertAdjacentHTML) {
+                    //     id(addDomName).insertAdjacentHTML('beforeend', c)
+                    // } else {
+                    //     id(addDomName).innerHTML += c
+                    // }
                     // document.body.insertAdjacentHTML('beforeend', htmlDivElement)
-                    document.body.insertAdjacentHTML('beforeend', html)
+                    document.body.innerHTML +=html
                 },
                 /**
                  * mixin
