@@ -1,175 +1,29 @@
-/**
- * Copyright (c) 2018 lemosen
- * email : 28462961@qq.com
- */
-// (function () {
-//     'use strict'
-//     alert("asd")
-//
-//     // Let ie support bind
-//     // 主要为了Ie能够使用弹窗，不然移动端确实不需要兼容bind
-//     if (!Function.prototype.bind) {
-//         Function.prototype.bind = function (oThis) {
-//             if (typeof this !== "function") {
-//                 throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable")
-//             }
-//             var aArgs = Array.prototype.slice.call(arguments, 1),
-//                 fToBind = this,
-//                 fNOP = function () {
-//                 },
-//                 fBound = function () {
-//                     return fToBind.apply(this instanceof fNOP && oThis
-//                         ? this
-//                         : oThis,
-//                         aArgs.concat(Array.prototype.slice.call(arguments)))
-//                 }
-//             fNOP.prototype = this.prototype
-//             fBound.prototype = new fNOP()
-//             return fBound
-//         }
-//     }
-//
-//     /**
-//      * Id Dom indexs
-//      * parent 是为了兼容iframe
-//      */
-//     function id(a) {
-//         return window.parent.document.getElementById(a)
-//     }
-//
-// // Avoid multiple imports, resulting in a different version of the first class
-//     // 保证只运行一个
-//     if (typeof window.lemosen == 'object') {
-//         console.error('Close the global object of XXY--xxy')
-//         return false
-//     }
-//     // document.documentElement.style.overflow = 'hidden'
-//     // document.body.style.overflow = 'hidden'
-//     window.lemosen = (function () {
-//         alert("asd1")
-//         var _init = {
-//             prototype: {
-//                 // screenWidth: window.screen.width,
-//                 // screenHeight: window.screen.height,
-//                 sureCallBackParam: {},
-//                 cancelCallBackParam: {},
-//                 modalDismiss: {},
-//                 modalParam: undefined
-//             },
-//             initPopup: function () {
-//                 alert("asd2")
-//                 lemosen.saveCallBackParam(arguments[2] ? arguments[2] : {}, true);
-//                 lemosen.saveCallBackParam(arguments[4] ? arguments[4] : {}, false);
-//
-//
-//             },
-//             saveCallBackParam(param, isSure) {
-//                 if (param && param !== {}) {
-//                     isSure ? window.lemosen.prototype.sureCallBackParam = param : window.lemosen.prototype.cancelCallBackParam = param;
-//                 }
-//             },
-//             createDocument: function (htmlStr) {
-//                 document.body.insertAdjacentHTML('beforeend', htmlStr)
-//             },
-//             //
-//             // alertSure: function (fun) {
-//             //     if (window.lemosen.prototype.sureCallBackParam) {
-//             //         fun(window.lemosen.prototype.sureCallBackParam);
-//             //     }
-//             //     // document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0));
-//             // },
-//             // alertCancel: function (fun) {
-//             //     if (window.lemosen.prototype.cancelCallBackParam) {
-//             //         fun(window.lemosen.prototype.cancelCallBackParam);
-//             //     }
-//             //     // document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0));
-//             // },
-//             // /**
-//             //  * 阻止点击模态框引起关闭事件
-//             //  * @param event
-//             //  */
-//             // popupBodyClick: function (event) {
-//             //     event.stopPropagation();
-//             // },
-//             // modalClose: function () {
-//             //     if (this.prototype.modalParam) {
-//             //         this.prototype.modalDismiss(this.prototype.modalParam);
-//             //     }
-//             //     document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0));
-//             // },
-//             // modalDismiss: function () {},
-//             // setModalParam: function () {
-//             //     if (arguments.length !== 0) {
-//             //         lemosen.prototype.modalParam = arguments;
-//             //     }
-//             // }
-//             test: 'test',
-//             /**
-//              * arguments
-//              * 0 content                require
-//              * 1 sureCallBack           require
-//              * 2 sureCallBackParam
-//              * 3 cancelCallBack
-//              * 4 cancelCallBackParam
-//              * 5 title
-//              */
-//             alert: function (a, b) {
-//                 alert("test3")
-//                 // if (d === undefined) {
-//                 //     d = function () {
-//                 //     };
-//                 // }
-//                 // if (g === undefined) {
-//                 let g = '提示';
-//                 // }
-//
-//                 lemosen.initPopup();
-//                 let htmlDivElement = '<div class="lemosen-popup"><div class="lemosen-popup-body">' +
-//                     '<div class="lemosen-popup-head">' + g + '</div>' +
-//                     '<div class="lemosen-popup-content">' + a + '</div>' +
-//                     '<p class="lemosen-popup-buttons">' +
-//                     // '<span class="lemosen-popup-button lemosen-popup-sure-button" onclick="lemosen.alertSure(' + arguments[1] + ')">确定</span>' +
-//                     // '<span class="lemosen-popup-button lemosen-popup-cancel-button" onclick="lemosen.alertCancel(' + arguments[3] + ')">取消</span>' +
-//                     '</p>' +
-//                     '</div>' +
-//                     '</div>';
-//                 lemosen.createDocument(htmlDivElement);
-//             },
-//
-//             toast: function () {
-//             },
-//
-//             // /**
-//             //  * arguments
-//             //  * 0 content                require
-//             //  * 1 dismiss
-//             //  * 2 width      vw
-//             //  */
-//             // modal: function () {
-//             //     if (arguments[1] === undefined) {
-//             //         arguments[1] = function () {};
-//             //     }
-//             //     let width = arguments[2] ? arguments[2] + '%' : 35 + '%';
-//             //     let htmlDivElement = lemosen.initPopup();
-//             //
-//             //     htmlDivElement.addEventListener("click", htmlDivElement.addEventListener("click", function () {
-//             //         lemosen.modalClose();
-//             //     }));
-//             //
-//             //     htmlDivElement.innerHTML = '<div onclick="lemosen.popupBodyClick(event)" class="lemosen-popup-body" style="width: ' + width + '">' +
-//             //         // '<div class="lemosen-popup-head"><span class="lemosen-popup-close"  onclick="lemosen.modalClose()">X</span></div>' +
-//             //         '<div class="lemosen-popup-content">' + arguments[0] + '</div>' + '</div>';
-//             //     lemosen.createDocument(htmlDivElement);
-//             // }
-//
-//         }
-//         return _init
-//
-//     })()
-// })()
-
-;(function () {
+(function () {
     //'use strict'
+
+    // Let ie support bind
+    // 主要为了Ie能够使用弹窗，不然移动端确实不需要兼容bind
+    if (!Function.prototype.bind) {
+        Function.prototype.bind = function (oThis) {
+            if (typeof this !== "function") {
+                throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable")
+            }
+            var aArgs = Array.prototype.slice.call(arguments, 1),
+                fToBind = this,
+                fNOP = function () {
+                },
+                fBound = function () {
+                    return fToBind.apply(this instanceof fNOP && oThis
+                        ? this
+                        : oThis,
+                        aArgs.concat(Array.prototype.slice.call(arguments)))
+                }
+            fNOP.prototype = this.prototype
+            fBound.prototype = new fNOP()
+            return fBound
+        }
+    }
+
     /**
      * Id Dom indexs
      * parent 是为了兼容iframe
@@ -256,35 +110,6 @@
 
             // init return api
             , _init = {
-                // alert1: function (a, b) {
-                //     // if (d === undefined) {
-                //     //     d = function () {
-                //     //     };
-                //     // }
-                //     // if (g === undefined) {
-                //     let g = '提示';
-                //     // }
-                //
-                //     // this.initPopup();
-                //     // let htmlDivElement = '<div class="lemosen-popup"><div class="lemosen-popup-body">' +
-                //     //     '<div class="lemosen-popup-head">' + g + '</div>' +
-                //     //     '<div class="lemosen-popup-content">' + a + '</div>' +
-                //     //     '<p class="lemosen-popup-buttons">' +
-                //     //     // '<span class="lemosen-popup-button lemosen-popup-sure-button" onclick="lemosen.alertSure(' + arguments[1] + ')">确定</span>' +
-                //     //     // '<span class="lemosen-popup-button lemosen-popup-cancel-button" onclick="lemosen.alertCancel(' + arguments[3] + ')">取消</span>' +
-                //     //     '</p>' +
-                //     //     '</div>' +
-                //     //     '</div>';
-                //     let c='<div style="width: 100px;height: 100px;background-color: red">asd</div>'
-                //     // // c add to div
-                //     if (document.body.insertAdjacentHTML) {
-                //         id(addDomName).insertAdjacentHTML('beforeend', c)
-                //     } else {
-                //         id(addDomName).innerHTML += c
-                //     }
-                //     // document.body.insertAdjacentHTML('beforeend', htmlDivElement)
-                //     // id(addDomName).innerHTML +=html
-                // },
                 /**
                  * mixin
                  * param {Object} to
@@ -572,6 +397,11 @@
                     this.popupClose = removePopUP
 
                 },
+                alert1: function () {
+                    alert("1");
+                    var html = "<div style='width: 100px;height: 100px;background-color: red'>asd</div>"
+                    id(addDomName).innerHTML += html;
+                },
 
                 /**
                  * Alert
@@ -604,125 +434,492 @@
                     button_child2.style.display = 'none'
                 },
 
+                template: function (str, callback) {
+                    var boxId = 'xxy-popup-box'
+                        , style = document.createElement('style')
+                        , tagname = 'off'
+                        , offFun = function (e) {
+                        this.getParent(e.target, 'tagName', tagname.toUpperCase(), function (element) {
+                            var params = void 0
+                            for (var key in element.dataset) {
+                                key.substring(0, 3) == 'xxy' && (params = key.split('xxy')[1].toLowerCase())
+                            }
+                            this.popupClose()
+                            callback(params)
+                            document.head.removeChild(style)
+                        }.bind(this))
+                    }
+                        , html
+                        , queryDom
+
+                    if (str.indexOf('<') == -1) {
+                        try {
+                            html = document.querySelector(str).innerHTML
+                        } catch (error) {
+                            console.log('%c[xxy]  参数有误', 'color: red')
+                            return
+                        }
+                    } else {
+                        html = str
+                    }
+
+                    xxy.popup('')
+                    style.innerHTML = 'off{display: block}'
+                    document.head.appendChild(style)
+                    document.querySelector('#' + boxId).innerHTML = html
+
+                    document.querySelector('#' + boxId).addEventListener('click', offFun.bind(this))
+                },
+
+                /**
+                 * Toast
+                 * @param {Object} inner Inner
+                 * @param {Object} config Config Or Time site  exp: time, site: (top, bottom, center)
+                 */
+                toast: function (inner, config) {
+                    //  analytic parameter
+                    if (config) {
+                        if (Object.prototype.toString.call(config) !== "[object Object]") {
+                            // initialize
+                            // assertion
+                            switch (Object.prototype.toString.call(config)) {
+                                case "[object Number]": {
+                                    config = {
+                                        exp: config
+                                    }
+                                    break
+                                }
+                                case "[object String]": {
+                                    config = {
+                                        site: config
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                    } else {
+                        config = defaults.toastui
+                    }
+
+                    var configParam = {
+                        time: config.exp || 2500,
+                        site: config.site || 'bottom'
+                    }
+                        , time = configParam.time + 10
+                        , id_name = 'xxy-toast'
+                        , toast_div = document.createElement('div')
+
+                    // remove ement
+                    if (id(id_name)) {
+                        var removeToast = id(id_name)
+                        removeToast.parentNode.removeChild(removeToast)
+                        this.toastRemveTime && window.clearTimeout(this.toastRemveTime)
+                    }
+
+                    // create ement
+                    toast_div.innerHTML = '<div>' + inner + '</div>'
+                    toast_div.id = id_name
+                    toast_div.className = id_name
+
+                    function setToastStyle() {
+                        // Site
+                        switch (config.site) {
+                            case "center": {
+                                toast_div.style.cssText = 'bottom: calc(50% - 1.5em);'
+                                break
+                            }
+                            case "top": {
+                                toast_div.style.cssText = 'top: 20vw; bottom: auto;'
+                                break
+                            }
+                        }
+                        // more ...
+                        if (config.more) {
+                            if (Object.prototype.toString.call(config.more) == "[object Object]") {
+                                for (var item in config.more) {
+                                    toast_div.children[0].style.cssText += ';' + item + ':' + config.more[item]
+                                }
+                            } else {
+                                console.log('%c XXY: 参数错误', 'color: red')
+                            }
+                        }
+
+                    }
+
+
+                    // add new && to remove ement
+                    id(addDomName).appendChild(toast_div)
+                    setToastStyle()
+                    this.toastRemveTime = window.setTimeout(function () {
+                        id(id_name).parentNode.removeChild(id(id_name))
+                    }, time)
+                },
+
+                /**
+                 * Pull-down slide
+                 */
+                touch: function xxyDown() {
+                    var global = {}
+                        , start = "touchstart"
+                        , move = "touchmove"
+                        , end = "touchend"
+
+                    xxyDown.bind(global)
+
+                    /**
+                     * cors
+                     * @param {Object} box Element
+                     * @param {Object} config Config
+                     */
+                    function core(box, config) {
+                        if (!window.getComputedStyle) return false// prevent IE Error
+
+                        var view = box.querySelector('.view')
+                            , inner = box.querySelector('.inner')
+                            , innerHeight = parseInt(window.getComputedStyle(box).height)
+                            , stopGap = 28 // Stop Gap px
+                            , stopGapDeviation = 5
+
+                        // touchstart
+                        inner.addEventListener(start, function (e) {
+                            var touch = e.touche || e.touches[0]
+                                , top = view.scrollTop
+                                , height = window.getComputedStyle(this).height
+                                , domHeight = window.parseInt(height)
+
+                            // prevent transition
+                            this.style.transitionDuration = '0ms'
+                            // set origin value
+                            this.startTop = top
+                            this.startSite = {
+                                y: touch.clientY
+                            }
+                            this.domHeight = domHeight
+                        }, false)
+
+                        /*
+                         * touchmove
+                         * The new browser (mobile terminal) sets the style for the elements and automatically optimizes them, so there is no need to split them
+                         */
+                        inner.addEventListener(move, function (e) {
+                            var touch = e.touche || e.touches[0]
+                                , top = view.scrollTop
+                                , startY = this.startSite.y
+                                , moveY = touch.clientY//get Y-axis value
+                                , boxHeight = config.body ? window.innerHeight : innerHeight
+                                , gap = moveY - startY
+                                , move_gap = (gap - gap / 1.37)
+                                , topGap = void 0
+                                , moveTop = void 0
+
+                            // Slide down to top execution
+                            if (moveY > startY) {
+                                if (top > 1 || !config.move) return false
+                                e.preventDefault()
+
+                                topGap = move_gap - this.startTop
+                                moveTop = topGap > stopGap + stopGapDeviation
+                                // set
+                                moveTop ? view.setAttribute('data-befor', '释放立即刷新') : view.setAttribute('data-befor', '下拉刷新')
+                                this.style.transform = 'translate3d(0, ' + topGap + 'px, 0)'
+                                this.topGap = topGap
+                                this.direction = 'down'
+
+                                // Slide to bottom execution
+                            } else if (top + boxHeight + 1 >= this.domHeight) {
+                                // Pull to the bottom to perform (scroll distance plus auto height equal to UL total height)
+                                e.preventDefault()
+                                if (!config.move) return false
+
+                                this.direction = 'up'
+                                // set
+                                if (-move_gap > stopGap + stopGapDeviation) {
+                                    view.setAttribute('data-after', '释放立即刷新')
+                                } else {
+                                    view.setAttribute('data-after', '上拉加载')
+                                }
+                                this.style.transform = 'translate3d(0, ' + move_gap + 'px, 0)'
+                                this.topGap = -move_gap
+                            }
+
+                        }, false)
+
+                        /*
+                         * touchend
+                         */
+                        inner.addEventListener(end, function (e) {
+                            var th = this
+                                , direction = this.direction
+                                , v = void 0
+
+                            e.stopPropagation()
+                            if (!this.direction) return false
+
+                            // backcall commit
+                            config.done = function () {
+                                th.style.transitionDuration = '500ms'
+                                th.style.transform = 'translate3d(0, 0px, 0)'
+                                th.direction = undefined
+                            }
+
+                            // update data to Dom Element
+                            function reloading() {
+                                v = direction == 'up' ? -stopGap : stopGap
+                                th.style.transitionDuration = '500ms'
+                                th.style.transform = 'translate3d(0, ' + v + 'px, 0)'
+                            }
+
+                            // not touch gap value min
+                            if (this.topGap < stopGap + stopGapDeviation) {
+                                config.done()
+                                return false
+                            }
+
+                            // update view state
+                            view.setAttribute('data-befor', '正在刷新..')
+                            view.setAttribute('data-after', '正在刷新..')
+
+                            // backcall
+                            direction == 'down' && config.down && config.down()// sild down Refresh
+                            direction == 'up' && config.up && config.up()// sild up reloading
+
+                            // refresh
+                            reloading()
+
+                        }, false)
+                    }
+
+                    return {
+                        bind: function (dom, config) {
+                            core(dom, config)
+                        }
+                    }
+                },
+
+                slider: function () {
+                    function cors(banner, config) {
+                        var banner = banner
+                            , list = banner.children[0]
+                            , rootWidth = -banner.getBoundingClientRect().width
+                            , startX = 0
+                            , index = 0
+                            , translateX = 0
+                            , tid = void 0
+                            , lis = void 0
+                            , points = void 0
+
+                        init()
+                        autoPlay()
+
+                        banner.running = false
+
+                        //touchstart
+                        banner.addEventListener('touchstart', function (ev) {
+
+                            startX = ev.changedTouches[0].clientX
+
+                            //close transition
+                            list.style.transition = "0s"
+
+                            //close auto timer
+                            clearInterval(tid)
+
+                            //header footer Lint  update Index
+                            changeIndex()
+
+                        })
+
+                        //touchmove
+                        banner.addEventListener('touchmove', function (ev) {
+                            //preventDefault
+                            ev.preventDefault()
+
+                            this.running = true
+
+                            //gap
+                            var dis = ev.changedTouches[0].clientX - startX
+
+                            //list mobile width
+                            translateX = rootWidth * index + dis
+
+                            //pull mobile Width
+                            changePage(0, translateX)
+
+                            // publish
+                            config.self.gap(dis)
+                        })
+
+                        //touchend
+                        banner.addEventListener('touchend', function (e) {
+                            e.stopPropagation()
+
+                            // get left right click element
+                            var target = e.target
+                            target.running = true
+                            ;(function qipao(box) {
+                                if (box.id == 'slider-right' || box.id == 'slider-left') {
+                                    ba(box)
+                                } else {
+                                    if (!box || box.tagName == 'BODY') {
+                                        return false
+                                    } else {
+                                        var boxParendNode = box.parentNode
+                                        qipao(boxParendNode)
+                                    }
+                                }
+                            })(target)
+
+                            function ba(e) {
+                                if (e.id == 'slider-right') {
+                                    index += 1
+                                    changePage(.3, rootWidth * index)
+                                } else {
+                                    index -= 1
+                                    changePage(.3, rootWidth * index)
+                                }
+                                changePoint()
+                                autoPlay()
+                                target.running = false
+                            }
+
+                            if (!target.running) return false
+
+                            /*
+                             * set index (Index is slider site index)
+                             */
+                            if (this.running) {
+                                index - translateX / rootWidth > .2 ? index-- :
+                                    index - translateX / rootWidth < -.2 ? index++ : ''
+                            }
+
+                            //modify beyond
+                            if (index < 0) {
+                                index = 0
+                            } else if (index > lis.length - 1) {
+                                index = lis.length - 1
+                            }
+
+                            changePage(.3, rootWidth * index)
+                            changePoint()
+                            autoPlay()
+
+                            this.running = false
+                        })
+
+                        /**
+                         * autoPlay
+                         */
+                        function autoPlay() {
+                            tid = setInterval(function () {
+                                changeIndex()
+                                changePage(0, rootWidth * index)
+
+                                // Delay execution, in order to make the page switch finished
+                                // 延时执行，为了让页面切换完毕
+                                setTimeout(function () {
+                                    index++
+                                    changePage(.3, rootWidth * index)
+                                    changePoint()
+                                }, 500)
+
+                            }, config.time)
+                        }
+
+                        /**
+                         * changeIndex publish set index (Index is slider site index)
+                         */
+                        function changeIndex() {
+                            if (index == 0) {
+                                // When displaying the first picture, switch to the first of the next group
+                                // 当显示第一张图片 切换到下一组的第一张
+                                index = points.length
+                            } else if (index == lis.length - 1) {
+                                // When you display the last one, switch to the last of the previous group
+                                // 当显示最后一张 切换到上一组的最后一张
+                                index = points.length - 1
+                            }
+                        }
+
+                        // set dot
+                        function changePoint() {
+                            for (var i = 0; i < points.length; i++) {
+                                points[i].classList.remove('active')
+                            }
+                            points[index % (points.length)].classList.add('active')
+                        }
+
+                        /**
+                         * move list
+                         * @param {Object} duration
+                         * @param {Object} translateVal
+                         */
+                        function changePage(duration, translateVal) {
+                            list.style.transition = duration + "s"
+                            list.style.transform = "translateX(" + translateVal + "px)"
+                            list.style.webkitTransform = "translateX(" + translateVal + "px)"
+                        }
+
+                        /*
+                         * init list And point
+                         */
+                        function init() {
+                            // add A group  添加一组
+                            if (document.body.insertAdjacentHTML) {
+                                list.insertAdjacentHTML('beforeend', list.innerHTML);
+                            } else {
+                                list.innerHTML += list.innerHTML
+                            }
+
+                            // set List width
+                            lis = list.children
+                            list.style.width = lis.length + "00%"
+
+                            // set LI width
+                            for (var i = 0; i < lis.length; i++) {
+                                lis[i].style.width = 100 / lis.length + "%"
+                            }
+
+                            // creact point div
+                            var pointDiv = document.createElement("div")
+                            pointDiv.setAttribute("id", "point")
+                            for (var i = 0; i < lis.length / 2; i++) {
+                                var span = document.createElement("span")
+                                if (i == 0) {
+                                    span.classList.add('active')
+                                }
+                                pointDiv.appendChild(span)
+                            }
+                            banner.appendChild(pointDiv)
+                            points = banner.querySelectorAll('#point span')
+                        }
+                    }
+
+                    /**
+                     * import Fun
+                     */
+                    function main(e, config) {
+                        if (!config) {
+                            var config = {
+                                time: 10 * 1000
+                            }
+                        }
+                        config.self = this
+                        cors(e, config)
+                    }
+
+                    var result = {
+                        on: function (key, param) {
+                            this[key] = param
+                        },
+                        gap: function () {
+                        },
+                        bind: main
+                    }
+
+                    return result
+                }
+
             }
         return _init
     })()
-
-    // window.lemosen = (function () {
-    //     var _init = {
-    //         // prototype: {
-    //         //     // screenWidth: window.screen.width,
-    //         //     // screenHeight: window.screen.height,
-    //         //     sureCallBackParam: {},
-    //         //     cancelCallBackParam: {},
-    //         //     modalDismiss: {},
-    //         //     modalParam: undefined
-    //         // },
-    //         // initPopup: function () {
-    //         //     lemosen.saveCallBackParam(arguments[2] ? arguments[2] : {}, true);
-    //         //     lemosen.saveCallBackParam(arguments[4] ? arguments[4] : {}, false);
-    //         //
-    //         //
-    //         // },
-    //         // saveCallBackParam(param, isSure) {
-    //         //     if (param && param !== {}) {
-    //         //         isSure ? this.prototype.sureCallBackParam = param : this.prototype.cancelCallBackParam = param;
-    //         //     }
-    //         // },
-    //         // createDocument: function (htmlStr) {
-    //         // },
-    //         //
-    //         // alertSure: function (fun) {
-    //         //     if (window.lemosen.prototype.sureCallBackParam) {
-    //         //         fun(window.lemosen.prototype.sureCallBackParam);
-    //         //     }
-    //         //     // document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0));
-    //         // },
-    //         // alertCancel: function (fun) {
-    //         //     if (window.lemosen.prototype.cancelCallBackParam) {
-    //         //         fun(window.lemosen.prototype.cancelCallBackParam);
-    //         //     }
-    //         //     // document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0));
-    //         // },
-    //         // /**
-    //         //  * 阻止点击模态框引起关闭事件
-    //         //  * @param event
-    //         //  */
-    //         // popupBodyClick: function (event) {
-    //         //     event.stopPropagation();
-    //         // },
-    //         // modalClose: function () {
-    //         //     if (this.prototype.modalParam) {
-    //         //         this.prototype.modalDismiss(this.prototype.modalParam);
-    //         //     }
-    //         //     document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0));
-    //         // },
-    //         // modalDismiss: function () {},
-    //         // setModalParam: function () {
-    //         //     if (arguments.length !== 0) {
-    //         //         lemosen.prototype.modalParam = arguments;
-    //         //     }
-    //         // }
-    //         /**
-    //          * arguments
-    //          * 0 content                require
-    //          * 1 sureCallBack           require
-    //          * 2 sureCallBackParam
-    //          * 3 cancelCallBack
-    //          * 4 cancelCallBackParam
-    //          * 5 title
-    //          */
-    //         alert: function (a, b) {
-    //             // if (d === undefined) {
-    //             //     d = function () {
-    //             //     };
-    //             // }
-    //             // if (g === undefined) {
-    //             let g = '提示';
-    //             // }
-    //
-    //             // this.initPopup();
-    //             let htmlDivElement = '<div class="lemosen-popup"><div class="lemosen-popup-body">' +
-    //                 '<div class="lemosen-popup-head">' + g + '</div>' +
-    //                 '<div class="lemosen-popup-content">' + a + '</div>' +
-    //                 '<p class="lemosen-popup-buttons">' +
-    //                 // '<span class="lemosen-popup-button lemosen-popup-sure-button" onclick="lemosen.alertSure(' + arguments[1] + ')">确定</span>' +
-    //                 // '<span class="lemosen-popup-button lemosen-popup-cancel-button" onclick="lemosen.alertCancel(' + arguments[3] + ')">取消</span>' +
-    //                 '</p>' +
-    //                 '</div>' +
-    //                 '</div>';
-    //
-    //             document.body.insertAdjacentHTML('beforeend', htmlDivElement)
-    //         },
-    //
-    //         // toast: function () {
-    //         // },
-    //         //
-    //         // /**
-    //         //  * arguments
-    //         //  * 0 content                require
-    //         //  * 1 dismiss
-    //         //  * 2 width      vw
-    //         //  */
-    //         // modal: function () {
-    //         //     if (arguments[1] === undefined) {
-    //         //         arguments[1] = function () {};
-    //         //     }
-    //         //     let width = arguments[2] ? arguments[2] + '%' : 35 + '%';
-    //         //     let htmlDivElement = lemosen.initPopup();
-    //         //
-    //         //     htmlDivElement.addEventListener("click", htmlDivElement.addEventListener("click", function () {
-    //         //         lemosen.modalClose();
-    //         //     }));
-    //         //
-    //         //     htmlDivElement.innerHTML = '<div onclick="lemosen.popupBodyClick(event)" class="lemosen-popup-body" style="width: ' + width + '">' +
-    //         //         // '<div class="lemosen-popup-head"><span class="lemosen-popup-close"  onclick="lemosen.modalClose()">X</span></div>' +
-    //         //         '<div class="lemosen-popup-content">' + arguments[0] + '</div>' + '</div>';
-    //         //     lemosen.createDocument(htmlDivElement);
-    //         // }
-    //
-    //     }
-    //     return _init
-    //
-    // })()
 })()
