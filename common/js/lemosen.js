@@ -3,9 +3,30 @@
  * email : 28462961@qq.com
  */
 (function () {
+    // Let ie support bind
+    // 主要为了Ie能够使用弹窗，不然移动端确实不需要兼容bind
+    if (!Function.prototype.bind) {
+        Function.prototype.bind = function (oThis) {
+            if (typeof this !== "function") {
+                throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable")
+            }
+            var aArgs = Array.prototype.slice.call(arguments, 1),
+                fToBind = this,
+                fNOP = function () { },
+                fBound = function () {
+                    return fToBind.apply(this instanceof fNOP && oThis
+                        ? this
+                        : oThis,
+                        aArgs.concat(Array.prototype.slice.call(arguments)))
+                }
+            fNOP.prototype = this.prototype
+            fBound.prototype = new fNOP()
+            return fBound
+        }
+    }
     // document.documentElement.style.overflow = 'hidden'
     // document.body.style.overflow = 'hidden'
-    window.lemosenCore = function () {
+    window.lemosenCore = (function () {
         var _init = {
             prototype: {
                 // screenWidth: window.screen.width,
@@ -63,8 +84,8 @@
             // }
         };
         return _init
-    }();
-    window.lemosen = function () {
+    })();
+    window.lemosen = (function () {
         var _init = {
             test:'test',
             /**
@@ -128,5 +149,5 @@
         };
         return _init
 
-    }();
+    })();
 })();
