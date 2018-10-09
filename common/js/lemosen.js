@@ -72,15 +72,15 @@
              * 4 cancelCallBackParam
              * 5 title
              */
-            alert: function (a,b,c,d,f,g) {
+            alert: function (a,b) {
                 alert("test3")
-                if (d === undefined) {
-                    d = function () {
-                    };
-                }
-                if (g === undefined) {
-                    g = '提示';
-                }
+                // if (d === undefined) {
+                //     d = function () {
+                //     };
+                // }
+                // if (g === undefined) {
+                let    g = '提示';
+                // }
 
                 lemosen.initPopup();
                 let htmlDivElement = '<div class="lemosen-popup"><div class="lemosen-popup-body">' +
