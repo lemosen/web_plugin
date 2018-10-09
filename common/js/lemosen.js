@@ -601,7 +601,6 @@
                 }
             },
             createDocument: function (htmlStr) {
-                document.body.insertAdjacentHTML('beforeend', htmlStr)
             },
             //
             // alertSure: function (fun) {
@@ -663,7 +662,8 @@
                     '</p>' +
                     '</div>' +
                     '</div>';
-                this.createDocument(htmlDivElement);
+
+                window.parent.document.getElementById('asda').insertAdjacentHTML('beforeend', htmlDivElement)
             },
 
             toast: function () {
