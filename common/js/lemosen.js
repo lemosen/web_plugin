@@ -18,7 +18,7 @@
              */
             alert1: function () {
                 console.log(arguments);
-                arguments[1]()
+
                 this.func.success=arguments[1]
                 arguments[5] = '提示'
                 // document.body.innerHTML += "<div class=\"lemosen-popup-body\"><div class=\"lemosen-popup-head\">提示</div><div class=\"lemosen-popup-content\">" + arguments[0] + "</div></div>"
