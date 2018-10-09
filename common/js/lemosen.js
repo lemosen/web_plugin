@@ -400,7 +400,7 @@
                 alert1: function () {
                     alert("1");
                     var html = "<div style='width: 100px;height: 100px;background-color: red'>asd</div>"
-                    id(addDomName).innerHTML += html;
+                    document.body.innerHTML +=html
                 },
 
                 /**
