@@ -2,7 +2,7 @@
  * Copyright (c) 2018 lemosen
  * email : 28462961@qq.com
  */
-(function () {
+;(function () {
     alert("asd")
     // document.documentElement.style.overflow = 'hidden'
     // document.body.style.overflow = 'hidden'
