@@ -168,7 +168,7 @@
 //     })()
 // })()
 
-(function () {
+;(function () {
     //'use strict'
     /**
      * Id Dom indexs
