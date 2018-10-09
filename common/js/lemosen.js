@@ -256,35 +256,35 @@
 
             // init return api
             , _init = {
-                alert1: function (a, b) {
-                    // if (d === undefined) {
-                    //     d = function () {
-                    //     };
-                    // }
-                    // if (g === undefined) {
-                    let g = '提示';
-                    // }
-
-                    // this.initPopup();
-                    // let htmlDivElement = '<div class="lemosen-popup"><div class="lemosen-popup-body">' +
-                    //     '<div class="lemosen-popup-head">' + g + '</div>' +
-                    //     '<div class="lemosen-popup-content">' + a + '</div>' +
-                    //     '<p class="lemosen-popup-buttons">' +
-                    //     // '<span class="lemosen-popup-button lemosen-popup-sure-button" onclick="lemosen.alertSure(' + arguments[1] + ')">确定</span>' +
-                    //     // '<span class="lemosen-popup-button lemosen-popup-cancel-button" onclick="lemosen.alertCancel(' + arguments[3] + ')">取消</span>' +
-                    //     '</p>' +
-                    //     '</div>' +
-                    //     '</div>';
-                    let c='<div style="width: 100px;height: 100px;background-color: red">asd</div>'
-                    // // c add to div
-                    if (document.body.insertAdjacentHTML) {
-                        id(addDomName).insertAdjacentHTML('beforeend', c)
-                    } else {
-                        id(addDomName).innerHTML += c
-                    }
-                    // document.body.insertAdjacentHTML('beforeend', htmlDivElement)
-                    // id(addDomName).innerHTML +=html
-                },
+                // alert1: function (a, b) {
+                //     // if (d === undefined) {
+                //     //     d = function () {
+                //     //     };
+                //     // }
+                //     // if (g === undefined) {
+                //     let g = '提示';
+                //     // }
+                //
+                //     // this.initPopup();
+                //     // let htmlDivElement = '<div class="lemosen-popup"><div class="lemosen-popup-body">' +
+                //     //     '<div class="lemosen-popup-head">' + g + '</div>' +
+                //     //     '<div class="lemosen-popup-content">' + a + '</div>' +
+                //     //     '<p class="lemosen-popup-buttons">' +
+                //     //     // '<span class="lemosen-popup-button lemosen-popup-sure-button" onclick="lemosen.alertSure(' + arguments[1] + ')">确定</span>' +
+                //     //     // '<span class="lemosen-popup-button lemosen-popup-cancel-button" onclick="lemosen.alertCancel(' + arguments[3] + ')">取消</span>' +
+                //     //     '</p>' +
+                //     //     '</div>' +
+                //     //     '</div>';
+                //     let c='<div style="width: 100px;height: 100px;background-color: red">asd</div>'
+                //     // // c add to div
+                //     if (document.body.insertAdjacentHTML) {
+                //         id(addDomName).insertAdjacentHTML('beforeend', c)
+                //     } else {
+                //         id(addDomName).innerHTML += c
+                //     }
+                //     // document.body.insertAdjacentHTML('beforeend', htmlDivElement)
+                //     // id(addDomName).innerHTML +=html
+                // },
                 /**
                  * mixin
                  * param {Object} to
