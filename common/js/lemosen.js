@@ -590,15 +590,14 @@
                 modalParam: undefined
             },
             initPopup: function () {
-                alert("asd2")
-                lemosen.saveCallBackParam(arguments[2] ? arguments[2] : {}, true);
-                lemosen.saveCallBackParam(arguments[4] ? arguments[4] : {}, false);
+                // lemosen.saveCallBackParam(arguments[2] ? arguments[2] : {}, true);
+                // lemosen.saveCallBackParam(arguments[4] ? arguments[4] : {}, false);
 
 
             },
             saveCallBackParam(param, isSure) {
                 if (param && param !== {}) {
-                    isSure ? window.lemosen.prototype.sureCallBackParam = param : window.lemosen.prototype.cancelCallBackParam = param;
+                    isSure ? this.prototype.sureCallBackParam = param : this.prototype.cancelCallBackParam = param;
                 }
             },
             createDocument: function (htmlStr) {
@@ -636,7 +635,6 @@
             //         lemosen.prototype.modalParam = arguments;
             //     }
             // }
-            test: 'test',
             /**
              * arguments
              * 0 content                require
@@ -647,7 +645,6 @@
              * 5 title
              */
             alert: function (a, b) {
-                alert("test3")
                 // if (d === undefined) {
                 //     d = function () {
                 //     };
@@ -656,7 +653,7 @@
                 let g = '提示';
                 // }
 
-                lemosen.initPopup();
+                this.initPopup();
                 let htmlDivElement = '<div class="lemosen-popup"><div class="lemosen-popup-body">' +
                     '<div class="lemosen-popup-head">' + g + '</div>' +
                     '<div class="lemosen-popup-content">' + a + '</div>' +
@@ -666,7 +663,7 @@
                     '</p>' +
                     '</div>' +
                     '</div>';
-                lemosen.createDocument(htmlDivElement);
+                this.createDocument(htmlDivElement);
             },
 
             toast: function () {
