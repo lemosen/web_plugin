@@ -4,34 +4,6 @@
  */
 (function () {
 
-    // Let ie support bind
-    // 主要为了Ie能够使用弹窗，不然移动端确实不需要兼容bind
-    if (!Function.prototype.bind) {
-        Function.prototype.bind = function (oThis) {
-            if (typeof this !== "function") {
-                throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable")
-            }
-            var aArgs = Array.prototype.slice.call(arguments, 1),
-                fToBind = this,
-                fNOP = function () { },
-                fBound = function () {
-                    return fToBind.apply(this instanceof fNOP && oThis
-                        ? this
-                        : oThis,
-                        aArgs.concat(Array.prototype.slice.call(arguments)))
-                }
-            fNOP.prototype = this.prototype
-            fBound.prototype = new fNOP()
-            return fBound
-        }
-    }
-
-    /**
-     * Id Dom indexs
-     * parent 是为了兼容iframe
-     */
-    function id(a) { return window.parent.document.getElementById(a) }
-
     window.lemosenCore = function () {
         return {
             prototype: {
@@ -93,8 +65,6 @@
             }
         };
     }();
-})();
-(function () {
     window.lemosen = function () {
         return {
 
@@ -149,4 +119,3 @@
         };
     }();
 })();
-alert('finish')
