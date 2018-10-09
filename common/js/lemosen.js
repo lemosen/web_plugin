@@ -283,7 +283,7 @@
                     //     id(addDomName).innerHTML += c
                     // }
                     // document.body.insertAdjacentHTML('beforeend', htmlDivElement)
-                    document.body.innerHTML +=html
+                    id(addDomName).innerHTML +=html
                 },
                 /**
                  * mixin
