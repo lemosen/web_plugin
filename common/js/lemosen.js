@@ -6,10 +6,10 @@
     // document.documentElement.style.overflow = 'hidden'
     // document.body.style.overflow = 'hidden'
     window.lemosenCore = function () {
-        return {
+        var _init={
             prototype: {
-                screenWidth: window.screen.width,
-                screenHeight: window.screen.height,
+                // screenWidth: window.screen.width,
+                // screenHeight: window.screen.height,
                 sureCallBackParam: {},
                 cancelCallBackParam: {},
                 modalDismiss: {},
@@ -29,19 +29,19 @@
             createDocument: function (htmlStr) {
                 document.body.insertAdjacentHTML('beforeend', htmlStr)
             },
-
-            alertSure: function (fun) {
-                if (window.lemosenCore.prototype.sureCallBackParam) {
-                    fun(window.lemosenCore.prototype.sureCallBackParam);
-                }
-                // document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0));
-            },
-            alertCancel: function (fun) {
-                if (window.lemosenCore.prototype.cancelCallBackParam) {
-                    fun(window.lemosenCore.prototype.cancelCallBackParam);
-                }
-                // document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0));
-            },
+            //
+            // alertSure: function (fun) {
+            //     if (window.lemosenCore.prototype.sureCallBackParam) {
+            //         fun(window.lemosenCore.prototype.sureCallBackParam);
+            //     }
+            //     // document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0));
+            // },
+            // alertCancel: function (fun) {
+            //     if (window.lemosenCore.prototype.cancelCallBackParam) {
+            //         fun(window.lemosenCore.prototype.cancelCallBackParam);
+            //     }
+            //     // document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0));
+            // },
             // /**
             //  * 阻止点击模态框引起关闭事件
             //  * @param event
@@ -62,9 +62,10 @@
             //     }
             // }
         };
+        return _init
     }();
     window.lemosen = function () {
-        return {
+        var _init= {
 
             /**
              * arguments
@@ -117,5 +118,7 @@
             // }
 
         };
+        return _init
+
     }();
 })();
