@@ -25,33 +25,33 @@
     position: relative;
     top: 20%;
     margin: 0 auto;
-    width: 35vw;
+    width: 35%;
     background: white;
     text-align: center;
 }
 
 .lemosen-popup-head {
-    padding: 1vh;
+    padding: 1%;
 }
 
 .lemosen-popup-content {
-    padding: 1vh;
+    padding: 1%;
 }
 
 .lemosen-popup-buttons {
-    height: 5vh;
+    height: 5%;
     border-top: 2px solid var(--light);
 }
 
 .lemosen-popup-buttons span {
-    height: 5vh;
+    height: 5%;
     box-sizing: border-box;
     display: inline-block;
 }
 
 .lemosen-popup-button {
-    height: 5vh;
-    padding: 1vh;
+    height: 5%;
+    padding: 1%;
 }
 
 .lemosen-popup-sure-button {
