@@ -1,4 +1,12 @@
-.lemosen-alert {
+:root {
+    --primary: #488aff;
+    --secondary: #32db64;
+    --danger: #f53d3d;
+    --light: #f4f4f4;
+    --dark: #222;
+}
+
+.lemosen-popup {
     position: fixed;
     overflow: auto;
     top: 0;
@@ -11,35 +19,51 @@
     outline: 0;
 }
 
-.lemosen-alert-body {
-    height: 12vh;
-    border-radius: 5px;
+.lemosen-popup-body {
+    font-size: 2rem;
+    border-radius: 15px;
     position: relative;
     top: 20%;
     margin: 0 auto;
-    width: 200px;
+    width: 35vw;
     background: white;
     text-align: center;
 }
 
-.lemosen-alert-head {
+.lemosen-popup-head {
     padding: 1vh;
 }
 
-.lemosen-alert-content {
+.lemosen-popup-content {
     padding: 1vh;
 }
 
-.lemosen-alert-buttons {
+.lemosen-popup-buttons {
+    height: 5vh;
+    border-top: 2px solid var(--light);
 }
 
-.lemosen-alert-button {
+.lemosen-popup-buttons span {
+    height: 5vh;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.lemosen-popup-button {
+    height: 5vh;
     padding: 1vh;
 }
 
-.lemosen-alert-sure-button {
-
+.lemosen-popup-sure-button {
+    color: var(--primary);
+    border-right: 2px solid var(--light);
 }
 
-.lemosen-alert-cancel-button {
+.lemosen-popup-cancel-button {
+    color: var(--danger);
+}
+
+.lemosen-popup-close {
+    float: right;
+    padding-right: 10px;
 }

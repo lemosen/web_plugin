@@ -5,12 +5,7 @@
 (function () {
     window.lemosen = (function () {
         return {
-            prototype: {
-                screenWidth: window.screen.width,
-                screenHeight: window.screen.height,
-                sureCallBackParam: {},
-                cancelCallBackParam: {}
-            },
+
             /**
              * arguments
              * 0 content                require
@@ -19,7 +14,6 @@
              * 3 cancelCallBack
              * 4 cancelCallBackParam
              * 5 title
-             * 6
              */
             alert: function () {
 
@@ -31,47 +25,104 @@
                     arguments[5] = '提示'
                 }
 
-                lemosen.saveCallBackParam(arguments[2] ? arguments[2] : {}, true);
-                lemosen.saveCallBackParam(arguments[4] ? arguments[4] : {}, false);
+                let htmlDivElement = lemosenCore.initPopup()
 
-                let htmlDivElement = document.createElement('div');
-                htmlDivElement.classList.add(['lemosen-alert'])
-                htmlDivElement.innerHTML = '<div class="lemosen-alert-body">' +
-                    '<div class="lemosen-alert-head">' + arguments[5] + '</div>' +
-                    '<div class="lemosen-alert-content">' + arguments[0] + '</div>' +
-                    '<p class="lemosen-alert-buttons">' +
-                    '<span class="lemosen-alert-button lemosen-alert-sure-button" onclick="lemosen.alertSure(' + arguments[1] + ')">确定</span>' +
-                    '<span class="lemosen-alert-button lemosen-alert-cancel-button" onclick="lemosen.alertCancel(' + arguments[3] + ')">取消</span>' +
+                htmlDivElement.innerHTML = '<div class="lemosen-popup-body">' +
+                    '<div class="lemosen-popup-head">' + arguments[5] + '</div>' +
+                    '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
+                    '<p class="lemosen-popup-buttons">' +
+                    '<span class="lemosen-popup-button lemosen-popup-sure-button" onclick="lemosenCore.alertSure(' + arguments[1] + ')">确定</span>' +
+                    '<span class="lemosen-popup-button lemosen-popup-cancel-button" onclick="lemosenCore.alertCancel(' + arguments[3] + ')">取消</span>' +
                     '</p>' +
                     '</div>'
-                lemosen.createDocument(htmlDivElement)
+                lemosenCore.createDocument(htmlDivElement)
             },
-            alertSure: function (fun) {
-                if (window.lemosen.prototype.sureCallBackParam) {
-                    fun(window.lemosen.prototype.sureCallBackParam)
-                }
-                document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-alert').item(0))
-            },
-            alertCancel: function (fun) {
-                if (window.lemosen.prototype.cancelCallBackParam) {
-                    fun(window.lemosen.prototype.cancelCallBackParam)
-                }
-                document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-alert').item(0))
-            },
+
             toast: function () {
 
             },
-            saveCallBackParam(param, isSure) {
-                if (param && param !== {}) {
-                    isSure ? window.lemosen.prototype.sureCallBackParam = param
-                        : window.lemosen.prototype.cancelCallBackParam = param
+
+            /**
+             * arguments
+             * 0 content                require
+             * 1 sureCallBack           require
+             * 2 sureCallBackParam
+             * 3 cancelCallBack
+             * 4 cancelCallBackParam
+             * 5 width      vw
+             */
+            modal: function () {
+                if (arguments[3] === undefined) {
+                    arguments[3] = function () {
+                    }
                 }
+                let htmlDivElement = lemosenCore.initPopup()
+
+                htmlDivElement.addEventListener("click", htmlDivElement.addEventListener("click", function () {
+                    document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0))
+                }))
+
+                htmlDivElement.innerHTML = '<div onclick="lemosenCore.popupBodyClick(event)" class="lemosen-popup-body" style="width: ' + arguments[5] ? arguments[5] + '' : 35 + '' + '">' +
+                    // '<div class="lemosen-popup-head"><span class="lemosen-popup-close"  onclick="lemosenCore.modalClose()">X</span></div>' +
+                    '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
+                    '</div>'
+                lemosenCore.createDocument(htmlDivElement)
             },
-            createDocument: function (htmlDivElement) {
-                let documentFragment = document.createDocumentFragment();
-                documentFragment.appendChild(htmlDivElement);
-                document.body.appendChild(documentFragment)
-            },
+
         };
     })()
+})();
+(function () {
+    window.lemosenCore = (function () {
+            return {
+                prototype: {
+                    screenWidth: window.screen.width,
+                    screenHeight: window.screen.height,
+                    sureCallBackParam: {},
+                    cancelCallBackParam: {}
+                },
+                saveCallBackParam(param, isSure) {
+                    if (param && param !== {}) {
+                        isSure ? window.lemosenCore.prototype.sureCallBackParam = param
+                            : window.lemosenCore.prototype.cancelCallBackParam = param
+                    }
+                },
+                createDocument: function (htmlDivElement) {
+                    let documentFragment = document.createDocumentFragment();
+                    documentFragment.appendChild(htmlDivElement);
+                    document.body.appendChild(documentFragment)
+                },
+                initPopup: function () {
+                    lemosenCore.saveCallBackParam(arguments[2] ? arguments[2] : {}, true);
+                    lemosenCore.saveCallBackParam(arguments[4] ? arguments[4] : {}, false);
+
+                    let htmlDivElement = document.createElement('div');
+                    htmlDivElement.classList.add(['lemosen-popup'])
+                    return htmlDivElement
+                },
+                alertSure: function (fun) {
+                    if (window.lemosenCore.prototype.sureCallBackParam) {
+                        fun(window.lemosenCore.prototype.sureCallBackParam)
+                    }
+                    document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0))
+                },
+                alertCancel: function (fun) {
+                    if (window.lemosenCore.prototype.cancelCallBackParam) {
+                        fun(window.lemosenCore.prototype.cancelCallBackParam)
+                    }
+                    document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0))
+                },
+                /**
+                 * 阻止点击模态框引起关闭事件
+                 * @param event
+                 */
+                popupBodyClick: function (event) {
+                    event.stopPropagation();
+                },
+                modalClose: function () {
+                    document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0))
+                }
+            }
+        }
+    )()
 })();
