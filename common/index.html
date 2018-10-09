@@ -10,15 +10,19 @@
 <h1>welcome to lemosen web common plugin</h1>
 <script>
     function test() {
-        alert("test2")
+        alert("test3")
     }
 
     function openAlert() {
-        lemosen.alert('asdss', function (param) {
+        let a=function (param) {
             console.log('i sure')
             console.log(param);
-        }, {a: 1}, function () {
-        }, {})
+        }
+        let b=function (param) {
+            console.log('i sure')
+            console.log(param);
+        }
+        lemosen.alert('asdss', a, {a: 1}, b, {})
     }
 
     function openModal() {
