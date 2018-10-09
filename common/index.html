@@ -9,8 +9,16 @@
 <body style="background: #dce8e8">
 <h1>welcome to lemosen web common plugin</h1>
 <script>
+    function test() {
+        alert("test1")
+    }
+
     function openAlert() {
-        alert("Asd")
+        lemosen.alert('asdss', function (param) {
+            console.log('i sure')
+            console.log(param);
+        }, {a: 1}, function () {
+        }, {})
     }
 
     function openModal() {
@@ -21,6 +29,9 @@
         }, {}, 50)
     }
 </script>
+<button onclick="test()">
+    test
+</button>
 <button onclick="openAlert()">
     alert
 </button>
