@@ -93,11 +93,10 @@
                     '<div class="lemosen-popup-head">' + arguments[0].title + '</div>' +
                     '<div class="lemosen-popup-content">' + arguments[0].content + '</div>' +
                     '<div class="lemosen-popup-buttons">' +
-                    '<button class="lemosen-popup-button" onclick="lemosen.popupCallback(true)">' +
+                    '<button class="lemosen-popup-button lemosen-popup-sure-button" onclick="lemosen.popupCallback(true)">' +
                     '<span class="lemosen-popup-sure-text lemosen-popup-text">' + arguments[0].okText + '</span>' +
                     '</button>' +
-                    // '<span class="lemosen-popup-button-divide"></span>' +
-                    '<button class="lemosen-popup-button " onclick="lemosen.popupCallback(false)">' +
+                    '<button class="lemosen-popup-button lemosen-popup-cancel-button" onclick="lemosen.popupCallback(false)">' +
                     '<span class="lemosen-popup-cancel-text lemosen-popup-text">' + arguments[0].cancelText + '</span>' +
                     '</button>' +
                     '</div>' +
