@@ -20,7 +20,7 @@
                 document.getElementsByClassName('lemosen-popup').item(0).classList.add('customer-fadeOut')
                 setTimeout(function () {
                     document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0))
-                },200)
+                },1900)
 
             },
             stopCloseEvent: function (event) {
