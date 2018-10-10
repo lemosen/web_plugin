@@ -42,6 +42,7 @@
     min-width: 250px;
     max-height: 90%;
     contain: content;
+    border: 0;
 }
 
 .lemosen-popup-head {
