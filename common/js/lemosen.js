@@ -68,30 +68,30 @@
                 alert("toast")
             },
 
-            /**
-             * arguments
-             * 0 content                require
-             * 1 dismiss
-             * 2 width      vw
-             */
-            modal: function () {
-                if (arguments[1] === undefined) {
-                    arguments[1] = function () {
-                    }
-                }
-                let width = arguments[2] ? arguments[2] + '%' : 35 + '%';
-
-                document.body.innerHTML +=
-                    '<div class="lemosen-popup">' +
-                    '<div onclick="lemosen.stopCloseEvent(event)" class="lemosen-popup-body" style="width: ' + width + '">' +
-                    // '<div class="lemosen-popup-head"><span class="lemosen-popup-close"  onclick="lemosen.modalClose()">X</span></div>' +
-                    '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
-                    '</div>' +
-                    '</div>';
-                document.getElementsByClassName('lemosen-popup').item(0).addEventListener("click", function () {
-                    lemosen.popupCallback(false)
-                })
-            },
+            // /**
+            //  * arguments
+            //  * 0 content                require
+            //  * 1 dismiss
+            //  * 2 width      vw
+            //  */
+            // modal: function () {
+            //     if (arguments[1] === undefined) {
+            //         arguments[1] = function () {
+            //         }
+            //     }
+            //     let width = arguments[2] ? arguments[2] + '%' : 35 + '%';
+            //
+            //     document.body.innerHTML +=
+            //         '<div class="lemosen-popup">' +
+            //         '<div onclick="lemosen.stopCloseEvent(event)" class="lemosen-popup-body" style="width: ' + width + '">' +
+            //         // '<div class="lemosen-popup-head"><span class="lemosen-popup-close"  onclick="lemosen.modalClose()">X</span></div>' +
+            //         '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
+            //         '</div>' +
+            //         '</div>';
+            //     document.getElementsByClassName('lemosen-popup').item(0).addEventListener("click", function () {
+            //         lemosen.popupCallback(false)
+            //     })
+            // },
             //
 
             // saveCallBackParam(param, isSure) {
