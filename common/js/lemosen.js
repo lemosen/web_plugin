@@ -17,7 +17,11 @@
                 if (isSuccess) {
                     this.prototype.successCallBack()
                 }
-                document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0))
+                document.getElementsByClassName('lemosen-popup').item(0).classList.add('customer-fadeOut')
+                setTimeout(function () {
+                    document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0))
+                },200)
+
             },
             stopCloseEvent: function (event) {
                 event.stopPropagation();
@@ -40,32 +44,6 @@
                     this.toast();
                     return
                 }
-                // if (arguments[2] === undefined) {
-                //     arguments[2] = '提示'
-                // }
-                // if (arguments[3] === undefined) {
-                //     arguments[3] = '确定'
-                // }
-                // if (arguments[4] === undefined) {
-                //     arguments[4] = '取消'
-                // }
-                // this.prototype.successCallBack = arguments[1]
-                // // let width = arguments[5] ? arguments[5] + '%' : 35 + '%';
-                // document.body.innerHTML +=
-                //     '<div class="lemosen-popup" style="padding-top: 50%;">' +
-                //     '<div class="lemosen-popup-body" onclick="lemosen.stopCloseEvent(event)">' +
-                //     '<div class="lemosen-popup-head">' + arguments[2] + '</div>' +
-                //     '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
-                //     '<div class="lemosen-popup-buttons">' +
-                //     '<button class="lemosen-popup-button lemosen-popup-sure-button" onclick="lemosen.popupCallback(true)">' + arguments[3] + '</button>' +
-                //     '<span class="lemosen-popup-button-divide"></span>' +
-                //     '<button class="lemosen-popup-button lemosen-popup-cancel-button" onclick="lemosen.popupCallback(false)">' + arguments[4] + '</button>' +
-                //     '</div>' +
-                //     '</div>' +
-                //     '</div>'
-                // document.getElementsByClassName('lemosen-popup').item(0).addEventListener("click", function () {
-                //     lemosen.popupCallback(false)
-                // })
                 if (arguments[0].callback === undefined) {
                     arguments[0].callback = function () {
 
@@ -83,9 +61,6 @@
                 if (arguments[0].cancelText === undefined) {
                     arguments[0].cancelText = '取消'
                 }
-                // if (arguments[0].top === undefined) {
-                //     arguments[0].top = 50
-                // }
                 this.prototype.successCallBack = arguments[0].callback
                 document.body.innerHTML +=
                     '<div class="lemosen-popup" >' +

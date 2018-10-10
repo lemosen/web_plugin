@@ -24,10 +24,7 @@
 }
 
 .lemosen-popup-body {
-    animation: fadeOut 0.3s linear;
-    -webkit-animation: fadeOut 0.3s linear;
-    -moz-animation: fadeOut 0.3s linear;
-    -ms-animation: fadeOut 0.3s linear;
+
 
     font-size: 1rem;
     border-radius: 15px;
@@ -49,6 +46,12 @@
     max-height: 90%;
     contain: content;
     border: 0;
+}
+.customer-fadeOut{
+    animation: fadeOut 0.3s linear;
+    -webkit-animation: fadeOut 0.3s linear;
+    -moz-animation: fadeOut 0.3s linear;
+    -ms-animation: fadeOut 0.3s linear;
 }
 
 .lemosen-popup-head {
