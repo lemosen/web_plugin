@@ -54,10 +54,11 @@
                     '<div class="lemosen-popup-body" onclick="lemosen.stopCloseEvent(event)">' +
                     '<div class="lemosen-popup-head">' + arguments[2] + '</div>' +
                     '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
-                    '<p class="lemosen-popup-buttons">' +
-                    '<span class="lemosen-popup-button lemosen-popup-sure-button" onclick="lemosen.popupCallback(true)">' + arguments[3] + '</span>' +
-                    '<span class="lemosen-popup-button lemosen-popup-cancel-button" onclick="lemosen.popupCallback(false)">' + arguments[4] + '</span>' +
-                    '</p>' +
+                    '<div class="lemosen-popup-buttons">' +
+                    '<button class="lemosen-popup-button lemosen-popup-sure-button" onclick="lemosen.popupCallback(true)">' + arguments[3] + '</button>' +
+                    '<span class="lemosen-popup-button-divide"></span>'+
+                    '<button class="lemosen-popup-button lemosen-popup-cancel-button" onclick="lemosen.popupCallback(false)">' + arguments[4] + '</button>' +
+                    '</div>' +
                     '</div>' +
                     '</div>'
                 document.getElementsByClassName('lemosen-popup').item(0).addEventListener("click", function () {
