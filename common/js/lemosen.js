@@ -11,9 +11,9 @@
                 modalParam: undefined
             },
             isOnlyPopup: function () {
-                let style1 = document.createElement('style');
-                style1.innerHTML = ':root{--primary:#488aff;--secondary:#32db64;--danger:#f53d3d;--light:#f4f4f4;--dark:#222;}.lemosen-popup{position:fixed;overflow:auto;top:0;right:0;bottom:0;left:0;z-index:1000;-webkit-overflow-scrolling:touch;background-color:rgba(8,8,8,0.65);outline:0;}.lemosen-popup-body{font-size:1rem;border-radius:15px;position:relative;top:40%;margin:0 auto;width:35%;background:white;text-align:center;}.lemosen-popup-head{padding:1%;}.lemosen-popup-content{padding:1%;}.lemosen-popup-buttons{height:5%;border-top:2px solid var(--light);}.lemosen-popup-buttons span{height:5%;box-sizing:border-box;display:inline-block;}.lemosen-popup-button{height:5%;padding:1%;}.lemosen-popup-sure-button{color:var(--primary);border-right:2px solid var(--light);padding-right:10px;}.lemosen-popup-cancel-button{color:var(--danger);padding-left:10px;}.lemosen-popup-close{float:right;padding-right:10px;}';
-                document.head.appendChild(style1);
+                // let style1 = document.createElement('style');
+                // style1.innerHTML = ':root{--primary:#488aff;--secondary:#32db64;--danger:#f53d3d;--light:#f4f4f4;--dark:#222;}.lemosen-popup{position:fixed;overflow:auto;top:0;right:0;bottom:0;left:0;z-index:1000;-webkit-overflow-scrolling:touch;background-color:rgba(8,8,8,0.65);outline:0;}.lemosen-popup-body{font-size:1rem;border-radius:15px;position:relative;top:40%;margin:0 auto;width:35%;background:white;text-align:center;}.lemosen-popup-head{padding:1%;}.lemosen-popup-content{padding:1%;}.lemosen-popup-buttons{height:5%;border-top:2px solid var(--light);}.lemosen-popup-buttons span{height:5%;box-sizing:border-box;display:inline-block;}.lemosen-popup-button{height:5%;padding:1%;}.lemosen-popup-sure-button{color:var(--primary);border-right:2px solid var(--light);padding-right:10px;}.lemosen-popup-cancel-button{color:var(--danger);padding-left:10px;}.lemosen-popup-close{float:right;padding-right:10px;}';
+                // document.head.appendChild(style1);
                 return document.getElementsByClassName('lemosen-popup').length === 0;
             },
             popupCallback: function (isSuccess) {

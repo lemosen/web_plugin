@@ -1,10 +1,10 @@
-:root {
-    --primary: #488aff;
-    --secondary: #32db64;
-    --danger: #f53d3d;
-    --light: #f4f4f4;
-    --dark: #222;
-}
+/*:root {*/
+    /*--primary: #488aff;*/
+    /*--secondary: #32db64;*/
+    /*--danger: #f53d3d;*/
+    /*--light: #f4f4f4;*/
+    /*--dark: #222;*/
+/*}*/
 
 .lemosen-popup {
     position: fixed;
@@ -40,7 +40,7 @@
 
 .lemosen-popup-buttons {
     height: 5%;
-    border-top: 2px solid var(--light);
+    border-top: 2px solid #f4f4f4;
 }
 
 .lemosen-popup-buttons span {
@@ -55,13 +55,13 @@
 }
 
 .lemosen-popup-sure-button {
-    color: var(--primary);
-    border-right: 2px solid var(--light);
+    color: #488aff;
+    border-right: 2px solid #f4f4f4;
     padding-right: 10px;
 }
 
 .lemosen-popup-cancel-button {
-    color: var(--danger);
+    color: #f53d3d;
     padding-left: 10px;
 }
 
