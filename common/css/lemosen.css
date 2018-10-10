@@ -48,10 +48,10 @@
     border: 0;
 }
 .customer-fadeOut{
-    animation: fadeOut 0.3s linear;
-    -webkit-animation: fadeOut 0.3s linear;
-    -moz-animation: fadeOut 0.3s linear;
-    -ms-animation: fadeOut 0.3s linear;
+    animation: fadeOut 2s linear;
+    -webkit-animation: fadeOut 2s linear;
+    -moz-animation: fadeOut 2s linear;
+    -ms-animation: fadeOut 2s linear;
 }
 
 .lemosen-popup-head {
