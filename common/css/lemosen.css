@@ -25,6 +25,9 @@
 
 .lemosen-popup-body {
     animation: fadeOut 0.3s linear;
+    -webkit-animation: fadeOut 0.3s linear;
+    -moz-animation: fadeOut 0.3s linear;
+    -ms-animation: fadeOut 0.3s linear;
 
     font-size: 1rem;
     border-radius: 15px;
