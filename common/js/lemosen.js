@@ -49,7 +49,7 @@
                 let width = arguments[5] ? arguments[5] + '%' : 35 + '%';
                 document.body.innerHTML +=
                     '<div class="lemosen-popup" style="padding-top: 50%;">' +
-                    '<div class="lemosen-popup-body" onclick="lemosen.stopCloseEvent(event)" style="width: ' + width + '">' +
+                    '<div class="lemosen-popup-body" onclick="lemosen.stopCloseEvent(event)" style="width: ' + width + ' ">' +
                     '<div class="lemosen-popup-head">' + arguments[2] + '</div>' +
                     '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
                     '<div class="lemosen-popup-buttons">' +
