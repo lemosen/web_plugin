@@ -68,7 +68,6 @@
 
 .lemosen-popup-button {
     margin: 0;
-    border-radius: 0;
     overflow: hidden;
     -webkit-box-flex: 1;
     -webkit-flex: 1 1 auto;
@@ -81,7 +80,8 @@
     border-left: .5px solid #f4f4f4;
     font-size: 17px;
     color: #488aff;
-    background-color: transparent;
+    background-color: white;
+    border-radius: 15px;
     text-align: center;
 }
 
