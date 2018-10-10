@@ -83,7 +83,7 @@
 
                 document.body.innerHTML +=
                     '<div class="lemosen-popup">' +
-                    '<div onclick="lemosen.popupBodyClick(event)" class="lemosen-popup-body" style="width: ' + width + '">' +
+                    '<div onclick="lemosen.stopCloseEvent(event)" class="lemosen-popup-body" style="width: ' + width + '">' +
                     // '<div class="lemosen-popup-head"><span class="lemosen-popup-close"  onclick="lemosen.modalClose()">X</span></div>' +
                     '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
                     '</div>' +
