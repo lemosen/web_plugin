@@ -2,10 +2,10 @@
 
     window.lemosen = (function () {
         return {
-            func:{
-              success:function () {
+            func: {
+                success: function () {
 
-              }
+                }
             },
             /**
              * arguments
@@ -19,7 +19,7 @@
             alert1: function () {
                 console.log(arguments);
 
-                this.func.success=arguments[1]
+                this.func.success = arguments[1]
                 arguments[5] = '提示'
                 // document.body.innerHTML += "<div class=\"lemosen-popup-body\"><div class=\"lemosen-popup-head\">提示</div><div class=\"lemosen-popup-content\">" + arguments[0] + "</div></div>"
                 document.body.innerHTML += '<div class="lemosen-popup-body" onclick="lemosen.alert2()"><div class="lemosen-popup-head">' + arguments[5] + '</div><div class="lemosen-popup-content">' + arguments[0] + '</div></div>'
@@ -27,27 +27,30 @@
             alert2: function () {
                 this.func.success()
             },
-            // alert: function () {
-            //     if (arguments[3] === undefined) {
-            //         arguments[3] = function () {
-            //         }
-            //     }
-            //     if (arguments[5] === undefined) {
-            //         arguments[5] = '提示'
-            //     }
-            //
-            //     let htmlDivElement = lemosen.initPopup()
-            //
-            //     htmlDivElement.innerHTML = '<div class="lemosen-popup-body">' +
-            //         '<div class="lemosen-popup-head">' + arguments[5] + '</div>' +
-            //         '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
-            //         '<p class="lemosen-popup-buttons">' +
-            //         '<span class="lemosen-popup-button lemosen-popup-sure-button" onclick="lemosen.alertSure(' + arguments[1] + ')">确定</span>' +
-            //         '<span class="lemosen-popup-button lemosen-popup-cancel-button" onclick="lemosen.alertCancel(' + arguments[3] + ')">取消</span>' +
-            //         '</p>' +
-            //         '</div>'
-            //     lemosen.createDocument(htmlDivElement)
-            // },
+            alert: function () {
+                if (arguments[3] === undefined) {
+                    arguments[3] = function () {
+                    }
+                }
+                if (arguments[5] === undefined) {
+                    arguments[5] = '提示'
+                }
+                this.func.success = arguments[1]
+                // let htmlDivElement = lemosen.initPopup()
+
+                document.body.innerHTML +=
+                    '<div class="lemosen-popup">' +
+                    '<div class="lemosen-popup-body">' +
+                    '<div class="lemosen-popup-head">' + arguments[5] + '</div>' +
+                    '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
+                    '<p class="lemosen-popup-buttons">' +
+                    '<span class="lemosen-popup-button lemosen-popup-sure-button" onclick="lemosen.alert2()">确定</span>' +
+                    '<span class="lemosen-popup-button lemosen-popup-cancel-button" onclick="lemosen.alert2()">取消</span>' +
+                    '</p>' +
+                    '</div>' +
+                    '</div>'
+
+            },
             //
             // toast: function () {
             //
@@ -97,14 +100,10 @@
             //     documentFragment.appendChild(htmlDivElement);
             //     document.body.appendChild(documentFragment)
             // },
-            // initPopup: function () {
-            //     lemosen.saveCallBackParam(arguments[2] ? arguments[2] : {}, true);
-            //     lemosen.saveCallBackParam(arguments[4] ? arguments[4] : {}, false);
-            //
-            //     let htmlDivElement = document.createElement('div');
-            //     htmlDivElement.classList.add(['lemosen-popup'])
-            //     return htmlDivElement
-            // },
+            initPopup: function () {
+                lemosen.saveCallBackParam(arguments[2] ? arguments[2] : {}, true);
+                lemosen.saveCallBackParam(arguments[4] ? arguments[4] : {}, false);
+            },
             // alertSure: function (fun) {
             //     if (window.lemosen.prototype.sureCallBackParam) {
             //         fun(window.lemosen.prototype.sureCallBackParam)
