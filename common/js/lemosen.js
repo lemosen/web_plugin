@@ -57,9 +57,9 @@
                 if (arguments[0].cancelText === undefined) {
                     arguments[0].cancelText = '取消'
                 }
-                if (arguments[0].top === undefined) {
-                    arguments[0].top = 50
-                }
+                // if (arguments[0].top === undefined) {
+                //     arguments[0].top = 50
+                // }
                 this.prototype.successCallBack = arguments[0].callback
                 document.body.innerHTML +=
                     '<div class="lemosen-popup" >' +
