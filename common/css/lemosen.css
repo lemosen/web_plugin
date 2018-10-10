@@ -24,18 +24,18 @@
     border-radius: 15px;
     position: relative;
     margin: 0 auto;
-    width: 35%;
+    width:fit-content;
     background: white;
     text-align: center;
 }
 
 .lemosen-popup-head {
     font-size: 0.8rem;
-    padding: 1%;
+    padding:5px;
 }
 
 .lemosen-popup-content {
-    padding: 1%;
+    padding: 16px;
 }
 
 .lemosen-popup-buttons {
@@ -49,12 +49,12 @@
     border: 0 white;
     background-color: white;
     height: 5%;
-    width: 49%;
+    width:fit-content;
 }
 
 .lemosen-popup-button-divide {
     height: 100%;
-    width: 2%;
+    width: 2px;
     border-right: 2px solid #f4f4f4;
 }
 

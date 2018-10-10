@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content=" initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <meta name = "format-detection" content = "telephone=no">
+    <meta name="format-detection" content="telephone=no">
     <title> web common plugin</title>
     <link rel="stylesheet" href="css/lemosen.css"/>
     <script src="js/lemosen.js"></script>
@@ -18,9 +18,16 @@
     }
 
     function openAlert() {
-        lemosen.alert('alert test ', function (e) {
-            alert("i am callback")
-        },"tip","ok")
+        let a = {
+            title: "tip",
+            content: 'alert test ',
+            okText: 'ok',
+            cancelText: 'cancel',
+            callback: function (e) {
+                alert("i am callback")
+            }
+        }
+        lemosen.alert(a)
     }
 
     function aaa(param) {
