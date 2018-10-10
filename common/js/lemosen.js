@@ -40,39 +40,39 @@
                     this.toast();
                     return
                 }
-                if (arguments[0]['callback'] === undefined) {
-                    arguments[0]['callback'] = function () {
+                if (arguments[0].callback === undefined) {
+                    arguments[0].callback = function () {
 
                     }
                 }
-                if (arguments[0]['title'] === undefined) {
-                    arguments[0]['title'] = '提示'
+                if (arguments[0].title === undefined) {
+                    arguments[0].title = '提示'
                 }
-                if (arguments[0]['content'] === undefined) {
-                    arguments[0]['content'] = '无内容'
+                if (arguments[0].content === undefined) {
+                    arguments[0].content = '无内容'
                 }
-                if (arguments[0]['okText'] === undefined) {
-                    arguments[0]['okText'] = '确定'
+                if (arguments[0].okText === undefined) {
+                    arguments[0].okText = '确定'
                 }
-                if (arguments[0]['cancelText'] === undefined) {
-                    arguments[0]['cancelText'] = '取消'
+                if (arguments[0].cancelText === undefined) {
+                    arguments[0].cancelText = '取消'
                 }
-                if (arguments[0]['top'] === undefined) {
-                    arguments[0]['top'] = 50
+                if (arguments[0].top === undefined) {
+                    arguments[0].top = 50
                 }
-                this.prototype.successCallBack = arguments[0]['callback']
+                this.prototype.successCallBack = arguments[0].callback
                 document.body.innerHTML +=
                     '<div class="lemosen-popup" >' +
                     '<div class="lemosen-popup-body" onclick="lemosen.stopCloseEvent(event)">' +
-                    '<div class="lemosen-popup-head">' + arguments[0]['title'] + '</div>' +
-                    '<div class="lemosen-popup-content">' + arguments[0]['content'] + '</div>' +
+                    '<div class="lemosen-popup-head">' + arguments[0].title + '</div>' +
+                    '<div class="lemosen-popup-content">' + arguments[0].content + '</div>' +
                     '<div class="lemosen-popup-buttons">' +
                     '<button class="lemosen-popup-button" onclick="lemosen.popupCallback(true)">' +
-                    '<span class="lemosen-popup-sure-text lemosen-popup-text">' + arguments[0]['okText'] + '</span>' +
+                    '<span class="lemosen-popup-sure-text lemosen-popup-text">' + arguments[0].okText + '</span>' +
                     '</button>' +
                     // '<span class="lemosen-popup-button-divide"></span>' +
                     '<button class="lemosen-popup-button " onclick="lemosen.popupCallback(false)">' +
-                    '<span class="lemosen-popup-cancel-text lemosen-popup-text">' + arguments[0]['cancelText'] + '</span>' +
+                    '<span class="lemosen-popup-cancel-text lemosen-popup-text">' + arguments[0].cancelText + '</span>' +
                     '</button>' +
                     '</div>' +
                     '</div>' +
