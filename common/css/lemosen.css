@@ -1,10 +1,10 @@
-:root {
---primary: #488aff;
---secondary: #32db64;
---danger: #f53d3d;
---light: #f4f4f4;
---dark: #222;
-}
+/*:root {*/
+/*--primary: #488aff;*/
+/*--secondary: #32db64;*/
+/*--danger: #f53d3d;*/
+/*--light: #f4f4f4;*/
+/*--dark: #222;*/
+/*}*/
 
 .lemosen-popup {
     justify-content: center;
@@ -80,7 +80,7 @@
     border-right: .5px solid #f4f4f4;
     border-left: .5px solid #f4f4f4;
     font-size: 17px;
-    color: var(--primary);
+    color: #488aff;
     background-color: transparent;
     text-align: center;
 }
