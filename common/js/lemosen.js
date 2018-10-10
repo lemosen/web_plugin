@@ -17,10 +17,10 @@
                 if (isSuccess) {
                     this.prototype.successCallBack()
                 }
-                document.getElementsByClassName('lemosen-popup').item(0).classList.add('customer-fadeOut')
+                document.getElementsByClassName('lemosen-popup').item(0).classList.add('lemosen-fadeOut')
                 setTimeout(function () {
                     document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0))
-                },1900)
+                }, 900)
 
             },
             stopCloseEvent: function (event) {
