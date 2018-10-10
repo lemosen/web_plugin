@@ -7,7 +7,6 @@
 /*}*/
 
 .lemosen-popup {
-    padding-top: 50%;
     position: fixed;
     overflow: auto;
     top: 0;
@@ -54,6 +53,7 @@
 }
 
 .lemosen-popup-button-divide {
+    height: 100%;
     width: 2%;
     border-right: 2px solid #f4f4f4;
 }
