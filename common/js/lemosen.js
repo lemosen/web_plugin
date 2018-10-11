@@ -68,8 +68,11 @@
                     arguments[0].cancelText = '取消'
                 }
                 this.prototype.successCallBack = arguments[0].callback
-                document.body.innerHTML +=
-                    '<div class="lemosen-popup" >' +
+                var htmlDivElement = document.createElement('div');
+                htmlDivElement.classList.add(['lemosen-popup'])
+
+                htmlDivElement.innerHTML =
+                    // '<div class="lemosen-popup" >' +
                     '<div class="lemosen-popup-body" onclick="lemosen.stopCloseEvent(event)">' +
                     '<div class="lemosen-popup-head">' + arguments[0].title + '</div>' +
                     '<div class="lemosen-popup-content">' + arguments[0].content + '</div>' +
@@ -81,11 +84,16 @@
                     '<span class="lemosen-popup-cancel-text lemosen-popup-text">' + arguments[0].cancelText + '</span>' +
                     '</button>' +
                     '</div>' +
-                    '</div>' +
                     '</div>'
+                // '</div>'
+                var documentFragment = document.createDocumentFragment();
+                documentFragment.appendChild(htmlDivElement);
+                document.body.appendChild(documentFragment)
+                document.getElementsByTagName('body').item(0).appendChild(documentFragment);
                 document.getElementsByClassName('lemosen-popup').item(0).addEventListener("click", function () {
                     lemosen.popupCallback(false)
                 })
+
             },
 
             toast: function () {
@@ -103,15 +111,19 @@
                     arguments[1] = function () {
                     }
                 }
-                let width = arguments[2] ? arguments[2] + '%' : 35 + '%';
-
-                document.body.innerHTML +=
-                    '<div class="lemosen-popup">' +
+                var width = arguments[2] ? arguments[2] + '%' : 35 + '%';
+                var htmlDivElement = document.createElement('div');
+                htmlDivElement.classList.add(['lemosen-popup'])
+                htmlDivElement.innerHTML +=
+                    // '<div class="lemosen-popup">' +
                     '<div onclick="lemosen.stopCloseEvent(event)" class="lemosen-popup-body" style="width: ' + width + '">' +
                     // '<div class="lemosen-popup-head"><span class="lemosen-popup-close"  onclick="lemosen.modalClose()">X</span></div>' +
                     '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
-                    '</div>' +
-                    '</div>';
+                    '</div>'
+                // '</div>';
+                var documentFragment = document.createDocumentFragment();
+                documentFragment.appendChild(htmlDivElement);
+                document.body.appendChild(documentFragment)
                 document.getElementsByClassName('lemosen-popup').item(0).addEventListener("click", function () {
                     lemosen.popupCallback(false)
                 })

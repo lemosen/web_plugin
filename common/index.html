@@ -12,7 +12,7 @@
 <body style="margin: 0;height: 100%">
 
 <div id="sub-content" style="display: none"></div>
-<div id="main-content" style="background: #dce8e8;height: 100%">
+<div id="main-content" style="background: white;height: 100%">
     <div style="margin: 0 ;text-align:center;height: fit-content;background-color:#f8f8f8 ">
         <h2 style="margin:0;padding: 5px"> web common plugin</h2>
     </div>
@@ -51,7 +51,7 @@
             }, {}, 50)
         }
     </script>
-    <input type="text" id="testInput" title="test"/>
+    <input style="border-bottom: 1px solid #f8f8f8" type="text" id="testInput" title="test"/>
     <div id="testInput1"></div>
     <button onclick="openAlert()">
         alert
@@ -59,6 +59,7 @@
     <button onclick="openModal()">
         modal
     </button>
+    <td>asd</td>
     <h2></h2>
     <h2></h2>
     <script>
@@ -127,7 +128,18 @@
             document.getElementById('testInput1').innerHTML = document.getElementById('testInput').value
             console.log(obj1)
         }, false)
-
+        function live(target, type, fn){    //元素类型，事件类型，执行函数
+            document.onkeyup = function(event){
+                var e = event ? event : window.event;
+                console.log(e.type);
+                if(e.type == type && e.target.id.toLocaleLowerCase() == target){
+                    fn();    //如果元素类型和事件类型同时匹配,则执行函数
+                }
+            }
+        }
+        live("testInput", "keyup", function(){
+            alert("live");
+        });
     </script>
 
 </div>
