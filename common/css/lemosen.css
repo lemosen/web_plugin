@@ -6,6 +6,27 @@
 /*--dark: #222;*/
 /*}*/
 
+.lemosen-tabs {
+    bottom: 0;
+    background-color: #f4f4f4;
+    height: 10%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: fixed;
+}
+
+.lemosen-tab {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    text-align: center;
+    width: 20%;
+    text-decoration: none;
+}
+
 .lemosen-popup {
 
     justify-content: center;
@@ -24,7 +45,6 @@
 }
 
 .lemosen-popup-body {
-
 
     font-size: 1rem;
     border-radius: 15px;
@@ -47,7 +67,8 @@
     contain: content;
     border: 0;
 }
-.lemosen-fadeOut{
+
+.lemosen-fadeOut {
     animation: fadeOut 1s linear;
     -webkit-animation: fadeOut 1s linear;
     -moz-animation: fadeOut 1s linear;

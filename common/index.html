@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content=" initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -9,11 +9,13 @@
     <link rel="stylesheet" href="css/animate.css"/>
     <script src="js/lemosen.js"></script>
 </head>
-<body>
-<div id="sub-content"></div>
-<div id="main-content" style="background: #dce8e8">
-    <h1> web common plugin</h1>
-    <div id="asda"></div>
+<body style="margin: 0;height: 100%">
+
+<div id="sub-content" style="display: none"></div>
+<div id="main-content" style="background: #dce8e8;height: 100%">
+    <div style="margin: 0 ;text-align:center;height: fit-content;background-color:#f8f8f8 ">
+        <h2 style="margin:0;padding: 5px"> web common plugin</h2>
+    </div>
     <script>
 
         function test() {
@@ -51,17 +53,12 @@
     </script>
     <input type="text" id="testInput" title="test"/>
     <div id="testInput1"></div>
-    <!--<button onclick="test()">-->
-    <!--test12232-->
-    <!--</button>-->
     <button onclick="openAlert()">
         alert
     </button>
     <button onclick="openModal()">
         modal
     </button>
-    <a href="#tab1">#tab1</a>
-    <a href="#tab2">#tab2</a>
     <h2></h2>
     <h2></h2>
     <script>
@@ -125,15 +122,31 @@
         console.log(B.__proto__)
         console.log(A.prototype)
         console.log(B.prototype)
-        var elementById = document.getElementById('testInput');
-        elementById.addEventListener('keyup', function () {
-            obj1.val1 = elementById.value;
-            document.getElementById('testInput1').innerHTML = elementById.value
+        document.getElementById('testInput').addEventListener('keyup', function () {
+            obj1.val1 = document.getElementById('testInput').value;
+            document.getElementById('testInput1').innerHTML = document.getElementById('testInput').value
             console.log(obj1)
         }, false)
 
     </script>
 
+</div>
+<div id="tabs" class="lemosen-tabs">
+    <a href="#" class="lemosen-tab">
+        home
+    </a>
+    <a href="#tab1" class="lemosen-tab">
+        tab1
+    </a>
+    <a href="#tab2" class="lemosen-tab">
+        tab2
+    </a>
+    <a href="#tab3" class="lemosen-tab">
+        tab3
+    </a>
+    <a href="#tab4" class="lemosen-tab">
+        tab4
+    </a>
 </div>
 </body>
 </html>
