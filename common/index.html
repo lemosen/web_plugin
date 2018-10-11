@@ -23,7 +23,7 @@
         //     alert("i am callback")
         // },"tip","ok")
         // let
-        lemosen.alert( {
+        lemosen.alert({
             title: "tip",
             content: "alert test ",
             okText: "ok",
@@ -40,13 +40,15 @@
     }
 
     function openModal() {
-        lemosen.modal('asdss', function (param) {
+        lemosen.modal('<h1>title</h1><h2>title1</h2><p>content</p>', function (param) {
             console.log('i sure')
             console.log(param);
         }, {a: 1}, function () {
         }, {}, 50)
     }
 </script>
+<input type="text" id="testInput" title="test"/>
+<div id="testInput1"></div>
 <button onclick="test()">
     test12232
 </button>
@@ -56,7 +58,50 @@
 <button onclick="openModal()">
     modal
 </button>
+<a href="#dasd">#asd</a>
 <h2></h2>
 <h2></h2>
+<script>
+    console.log(window.location.href);
+    window.addEventListener('load', f)
+    window.addEventListener('hashchange', f)
+    function f(e) {
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("GET",'./tab1.html',true); //第三个参数是同步异步,主线程只能异步
+        xmlhttp.send();
+
+        console.log(e);
+    }
+    var obj = new Object()
+    var obj1 ={val1:'asd'}
+    Object.defineProperties(obj, {
+        val1: {
+            value: '张三',
+            configurable: true,
+            writable: false,
+            enumerable: true
+        }
+    })
+    // console.log(obj)
+    // console.log(obj1)
+    // console.log(Object.getOwnPropertyDescriptors(obj1));
+    // console.log(Object.getOwnPropertyDescriptors(obj));
+    var A = function () {};
+    var B ={};
+    console.log(A.__proto__)
+    console.log(B.__proto__)
+    console.log(A.__proto__.__proto__)
+    console.log(B.__proto__)
+    console.log(A.prototype)
+    console.log(B.prototype)
+    var elementById = document.getElementById('testInput');
+    elementById.addEventListener('keyup', function () {
+        obj1.val1 = elementById.value;
+        document.getElementById('testInput1').innerHTML=elementById.value
+        console.log(obj1)
+    }, false)
+
+</script>
+
 </body>
 </html>
