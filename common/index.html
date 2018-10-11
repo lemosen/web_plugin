@@ -69,19 +69,28 @@
     window.addEventListener('hashchange', f)
 
     function f(e) {
+        var isMain = false;
         var xmlhttp = new XMLHttpRequest();
         if (e.newURL.split('#')[1] === 'tab1') {
             xmlhttp.open("GET", './tab1.html', true); //第三个参数是同步异步,主线程只能异步
         }
         if (e.newURL.split('#')[1] === 'tab2') {
             xmlhttp.open("GET", './tab2.html', true); //第三个参数是同步异步,主线程只能异步
+        } else {
+            xmlhttp.open("GET", './index.html', true);
+            isMain = true;
         }
         xmlhttp.send();
         xmlhttp.onreadystatechange = function () {//服务器返回值的处理函数，此处使用匿名函数进行实现
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 var responseText = xmlhttp.responseText;
-                document.getElementById('sub-content').innerHTML = responseText;
-                document.getElementById('main-content').style.display = 'none';
+                if (isMain) {
+                    document.getElementById('main-content').style.display = 'block';
+                } else {
+                    document.getElementById('sub-content').innerHTML = responseText;
+                    document.getElementById('main-content').style.display = 'none';
+                }
+
             }
         };
         console.log(e);
