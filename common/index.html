@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/animate.css"/>
     <script src="js/lemosen.js"></script>
 </head>
-<body style="background: #dce8e8">
+<body id="content" style="background: #dce8e8">
 <h1> web common plugin</h1>
 <div id="asda"></div>
 <script>
@@ -58,22 +58,35 @@
 <button onclick="openModal()">
     modal
 </button>
-<a href="#dasd">#asd</a>
+<a href="#tab1">#tab1</a>
+<a href="#tab2">#tab2</a>
 <h2></h2>
 <h2></h2>
 <script>
     console.log(window.location.href);
-    window.addEventListener('load', f)
+    // window.addEventListener('load', f)
     window.addEventListener('hashchange', f)
-    function f(e) {
-        var xmlhttp=new XMLHttpRequest();
-        xmlhttp.open("GET",'./tab1.html',true); //第三个参数是同步异步,主线程只能异步
-        xmlhttp.send();
 
+    function f(e) {
+        var xmlhttp = new XMLHttpRequest();
+        if (e.newURL.split('#')[1] === 'tab1') {
+            xmlhttp.open("GET", './tab1.html', true); //第三个参数是同步异步,主线程只能异步
+        }
+        if (e.newURL.split('#')[1] === 'tab2') {
+            xmlhttp.open("GET", './tab2.html', true); //第三个参数是同步异步,主线程只能异步
+        }
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function () {//服务器返回值的处理函数，此处使用匿名函数进行实现
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var responseText = xmlhttp.responseText;
+                document.getElementById('content').innerHTML = responseText;
+            }
+        };
         console.log(e);
     }
+
     var obj = new Object()
-    var obj1 ={val1:'asd'}
+    var obj1 = {val1: 'asd'}
     Object.defineProperties(obj, {
         val1: {
             value: '张三',
@@ -86,8 +99,9 @@
     // console.log(obj1)
     // console.log(Object.getOwnPropertyDescriptors(obj1));
     // console.log(Object.getOwnPropertyDescriptors(obj));
-    var A = function () {};
-    var B ={};
+    var A = function () {
+    };
+    var B = {};
     console.log(A.__proto__)
     console.log(B.__proto__)
     console.log(A.__proto__.__proto__)
@@ -97,7 +111,7 @@
     var elementById = document.getElementById('testInput');
     elementById.addEventListener('keyup', function () {
         obj1.val1 = elementById.value;
-        document.getElementById('testInput1').innerHTML=elementById.value
+        document.getElementById('testInput1').innerHTML = elementById.value
         console.log(obj1)
     }, false)
 
