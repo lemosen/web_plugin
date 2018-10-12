@@ -180,40 +180,66 @@
             // }
             router: {
                 init: function (routerConfig) {
-                    lemosen.router.routerConfig = routerConfig;
-                    // window.addEventListener('load', f)
+                    var rc = [];
+                    for (var i = 0; i < routerConfig.length; i++) {
+                        rc.push({url: routerConfig[i].url, path: routerConfig[i].path, isIndex: routerConfig[i].isIndex, cacheHtml: undefined})
+                    }
+                    // for (var routerConfig of routerConfig) {
+                    //
+                    // }
+                    lemosen.router.routerConfig.routers = rc;
+                    console.log(lemosen.router.routerConfig.routers);
+
                     window.addEventListener('hashchange', lemosen.router.match)
                 },
                 /**
                  * path tab1
                  * url https://lemosen.github.io/web_plugin/common/tab1.html
                  * isIndex true
+                 * cacheHtml true
                  */
-                routerConfig: [],
+                routerConfig: {routers: []},
                 match: function f(location) {
                     var isMain = false;
+                    var cacheHtml = '';
                     var xmlhttp = new XMLHttpRequest();
-                    lemosen.router.routerConfig.forEach((e, i) => {
+                    var url='';
+                    for (var i = 0; i < lemosen.router.routerConfig.routers.length; i++) {
+                        var e=lemosen.router.routerConfig.routers[i]
                         if (e.path === location.newURL.split('#')[1]) {
-                            xmlhttp.open("GET", e.url, true); //第三个参数是同步异步,主线程只能异步
+                            url = e.url;
                             isMain = e.isIndex;
-                        }
-                    });
-                    xmlhttp.send();
-                    xmlhttp.onreadystatechange = function () {//服务器返回值的处理函数，此处使用匿名函数进行实现
-                        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                            var responseText = xmlhttp.responseText;
-                            if (isMain) {
-                                document.getElementById('main-content').style.display = 'block';
-                                document.getElementById('sub-content').style.display = 'none';
-                            } else {
-                                document.getElementById('sub-content').innerHTML = responseText;
-                                document.getElementById('main-content').style.display = 'none';
-                                document.getElementById('sub-content').style.display = 'block';
+                            console.log(e)
+                            console.log(e.cacheHtml)
+                            if (e.cacheHtml !== undefined) {
+                                cacheHtml = true;
                             }
-
                         }
-                    };
+                    }
+                    var isMainf=function (isMain,html) {
+                        if (isMain) {
+                            document.getElementById('main-content').style.display = 'block';
+                            document.getElementById('sub-content').style.display = 'none';
+                        } else {
+                            document.getElementById('sub-content').innerHTML = html;
+                            document.getElementById('main-content').style.display = 'none';
+                            document.getElementById('sub-content').style.display = 'block';
+                        }
+                    }
+                    if (cacheHtml !== '') {
+                        isMainf(isMain,cacheHtml)
+                    } else {
+                        xmlhttp.open("GET", url, true); //第三个参数是同步异步,主线程只能异步
+                        xmlhttp.send();
+                        xmlhttp.onreadystatechange = function () {//服务器返回值的处理函数，此处使用匿名函数进行实现
+                            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                                var responseText = xmlhttp.responseText;
+                                isMainf(isMain,responseText)
+
+                            }
+                        };
+                    }
+
                     console.log(location);
                 }
             }
