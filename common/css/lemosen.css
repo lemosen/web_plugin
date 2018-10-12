@@ -1,10 +1,10 @@
-/*:root {*/
-/*--primary: #488aff;*/
-/*--secondary: #32db64;*/
-/*--danger: #f53d3d;*/
-/*--light: #f4f4f4;*/
-/*--dark: #222;*/
-/*}*/
+:root {
+    --primary: #488aff;
+    --secondary: #32db64;
+    --danger: #f53d3d;
+    --light: #f4f4f4;
+    --dark: #222;
+}
 
 .lemosen-tabs {
     bottom: 0;
@@ -156,7 +156,7 @@
 }
 
 .lemosen-popup-sure-text {
-    color: #488aff;
+    color: var(--primary);
 }
 
 .lemosen-popup-cancel-text {

@@ -184,11 +184,7 @@
                     for (var i = 0; i < routerConfig.length; i++) {
                         rc.push({url: routerConfig[i].url, path: routerConfig[i].path, isIndex: routerConfig[i].isIndex, cacheHtml: undefined})
                     }
-                    // for (var routerConfig of routerConfig) {
-                    //
-                    // }
                     lemosen.router.routerConfig.routers = rc;
-                    console.log(lemosen.router.routerConfig.routers);
 
                     window.addEventListener('hashchange', lemosen.router.match)
                 },
