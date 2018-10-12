@@ -141,10 +141,10 @@
             //     documentFragment.appendChild(htmlDivElement);
             //     document.body.appendChild(documentFragment)
             // },
-            initPopup: function () {
-                lemosen.saveCallBackParam(arguments[2] ? arguments[2] : {}, true);
-                lemosen.saveCallBackParam(arguments[4] ? arguments[4] : {}, false);
-            },
+            // initPopup: function () {
+            //     lemosen.saveCallBackParam(arguments[2] ? arguments[2] : {}, true);
+            //     lemosen.saveCallBackParam(arguments[4] ? arguments[4] : {}, false);
+            // },
             // alertSure: function (fun) {
             //     if (window.lemosen.prototype.sureCallBackParam) {
             //         fun(window.lemosen.prototype.sureCallBackParam)
@@ -180,9 +180,9 @@
             // }
             router: {
                 init: function (routerConfig) {
-                    this.routerConfig = routerConfig;
+                    lemosen.router.routerConfig = routerConfig;
                     // window.addEventListener('load', f)
-                    window.addEventListener('hashchange', this.match)
+                    window.addEventListener('hashchange', lemosen.router.match)
                 },
                 /**
                  * path tab1
@@ -193,7 +193,7 @@
                 match: function f(location) {
                     var isMain = false;
                     var xmlhttp = new XMLHttpRequest();
-                    this.routerConfig.forEach((e, i) => {
+                    lemosen.router.routerConfig.forEach((e, i) => {
                         if (e.path === location.newURL.split('#')[1]) {
                             xmlhttp.open("GET", e.url, true); //第三个参数是同步异步,主线程只能异步
                             isMain = e.isIndex;
