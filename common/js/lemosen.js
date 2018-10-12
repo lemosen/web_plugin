@@ -178,51 +178,46 @@
             //         lemosen.prototype.modalParam = arguments
             //     }
             // }
-        }
-    })()
-
-
-    window.lemosen.router = (function () {
-
-
-        return {
-            init: function (routerConfig) {
-                this.routerConfig = routerConfig;
-                // window.addEventListener('load', f)
-                window.addEventListener('hashchange', this.match)
-            },
-            /**
-             * path tab1
-             * url https://lemosen.github.io/web_plugin/common/tab1.html
-             * isIndex true
-             */
-            routerConfig: [],
-            match: function f(location) {
-                var isMain = false;
-                var xmlhttp = new XMLHttpRequest();
-                this.routerConfig.forEach((e, i) => {
-                    if (e.path === location.newURL.split('#')[1]) {
-                        xmlhttp.open("GET", e.url, true); //第三个参数是同步异步,主线程只能异步
-                        isMain = e.isIndex;
-                    }
-                });
-                xmlhttp.send();
-                xmlhttp.onreadystatechange = function () {//服务器返回值的处理函数，此处使用匿名函数进行实现
-                    if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                        var responseText = xmlhttp.responseText;
-                        if (isMain) {
-                            document.getElementById('main-content').style.display = 'block';
-                            document.getElementById('sub-content').style.display = 'none';
-                        } else {
-                            document.getElementById('sub-content').innerHTML = responseText;
-                            document.getElementById('main-content').style.display = 'none';
-                            document.getElementById('sub-content').style.display = 'block';
+            router: {
+                init: function (routerConfig) {
+                    this.routerConfig = routerConfig;
+                    // window.addEventListener('load', f)
+                    window.addEventListener('hashchange', this.match)
+                },
+                /**
+                 * path tab1
+                 * url https://lemosen.github.io/web_plugin/common/tab1.html
+                 * isIndex true
+                 */
+                routerConfig: [],
+                match: function f(location) {
+                    var isMain = false;
+                    var xmlhttp = new XMLHttpRequest();
+                    this.routerConfig.forEach((e, i) => {
+                        if (e.path === location.newURL.split('#')[1]) {
+                            xmlhttp.open("GET", e.url, true); //第三个参数是同步异步,主线程只能异步
+                            isMain = e.isIndex;
                         }
+                    });
+                    xmlhttp.send();
+                    xmlhttp.onreadystatechange = function () {//服务器返回值的处理函数，此处使用匿名函数进行实现
+                        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                            var responseText = xmlhttp.responseText;
+                            if (isMain) {
+                                document.getElementById('main-content').style.display = 'block';
+                                document.getElementById('sub-content').style.display = 'none';
+                            } else {
+                                document.getElementById('sub-content').innerHTML = responseText;
+                                document.getElementById('main-content').style.display = 'none';
+                                document.getElementById('sub-content').style.display = 'block';
+                            }
 
-                    }
-                };
-                console.log(location);
+                        }
+                    };
+                    console.log(location);
+                }
             }
         }
     })()
+
 })()
