@@ -179,40 +179,54 @@
             //     }
             // }
             router: {
+                /**
+                 * isCache 是否启用缓存 默认是
+                 * routers
+                 *  path tab1
+                 *  url https://lemosen.github.io/web_plugin/common/tab1.html
+                 *  isIndex true
+                 *  cacheHtml true
+                 */
+                routerConfig: {noCache: undefined, routers: []},
                 init: function (routerConfig) {
+                    console.log(window.location.href);
+
+                    if (routerConfig.noCache) {
+                        lemosen.router.routerConfig.noCache = routerConfig.noCache
+                    } else {
+                        lemosen.router.routerConfig.noCache = false;
+                    }
                     var rc = [];
-                    for (var i = 0; i < routerConfig.length; i++) {
-                        rc.push({url: routerConfig[i].url, path: routerConfig[i].path, isIndex: routerConfig[i].isIndex, cacheHtml: undefined})
+                    for (var i = 0; i < routerConfig.routers.length; i++) {
+                        rc.push({url: routerConfig.routers[i].url, path: routerConfig.routers[i].path, isIndex: routerConfig.routers[i].isIndex, cacheHtml: undefined})
                     }
                     lemosen.router.routerConfig.routers = rc;
 
                     window.addEventListener('hashchange', lemosen.router.match)
+
+                    var location = window.location
+                    location.newURL = window.location.href
+                    lemosen.router.match(location)
+                    // window.addEventListener('load', f)
                 },
-                /**
-                 * path tab1
-                 * url https://lemosen.github.io/web_plugin/common/tab1.html
-                 * isIndex true
-                 * cacheHtml true
-                 */
-                routerConfig: {routers: []},
                 match: function f(location) {
                     var isMain = false;
-                    var cacheHtml = '';
+                    var cacheHtml = false;
                     var xmlhttp = new XMLHttpRequest();
-                    var url='';
+                    var url = '';
+                    var routerIndex
                     for (var i = 0; i < lemosen.router.routerConfig.routers.length; i++) {
-                        var e=lemosen.router.routerConfig.routers[i]
+                        var e = lemosen.router.routerConfig.routers[i]
                         if (e.path === location.newURL.split('#')[1]) {
+                            routerIndex = i
                             url = e.url;
                             isMain = e.isIndex;
-                            console.log(e)
-                            console.log(e.cacheHtml)
                             if (e.cacheHtml !== undefined) {
                                 cacheHtml = true;
                             }
                         }
                     }
-                    var isMainf=function (isMain,html) {
+                    var isMainf = function (isMain, html) {
                         if (isMain) {
                             document.getElementById('main-content').style.display = 'block';
                             document.getElementById('sub-content').style.display = 'none';
@@ -222,24 +236,24 @@
                             document.getElementById('sub-content').style.display = 'block';
                         }
                     }
-                    if (cacheHtml !== '') {
-                        isMainf(isMain,cacheHtml)
+                    if (cacheHtml && !lemosen.router.routerConfig.noCache) {
+                        isMainf(isMain, lemosen.router.routerConfig.routers[routerIndex].cacheHtml)
                     } else {
                         xmlhttp.open("GET", url, true); //第三个参数是同步异步,主线程只能异步
                         xmlhttp.send();
                         xmlhttp.onreadystatechange = function () {//服务器返回值的处理函数，此处使用匿名函数进行实现
                             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                                lemosen.router.routerConfig.routers[routerIndex].cacheHtml = xmlhttp.responseText
                                 var responseText = xmlhttp.responseText;
-                                isMainf(isMain,responseText)
+                                isMainf(isMain, responseText)
 
                             }
                         };
                     }
 
-                    console.log(location);
                 }
             }
         }
     })()
 
-})()
+})();

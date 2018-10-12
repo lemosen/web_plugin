@@ -13,11 +13,34 @@
 
 <div id="sub-content" style="display: none"></div>
 <div id="main-content" style="background: white;height: 100%">
-    <lemosen:tab></lemosen:tab>
+    <!--<lemosen:tab a="sd">asd</lemosen:tab>-->
+    <!--<button onclick="show()">test</button>-->
     <div style="margin: 0 ;text-align:center;height: fit-content;background-color:#f8f8f8 ">
         <h2 style="margin:0;padding: 5px"> web common plugin</h2>
     </div>
     <script>
+        function show(){
+            document.getElementsByTagName('lemosen:tab').item(0).innerHTML="asdssss"
+            console.log(document.getElementsByTagName('lemosen:tab'));
+        }
+        var routerConfig = {
+            noCache: true,
+            routers: [{
+                path: 'tab1',
+                url: 'https://lemosen.github.io/web_plugin/common/tab1.html',
+                isIndex: false,
+            }, {
+                path: 'tab2',
+                url: 'https://lemosen.github.io/web_plugin/common/tab2.html',
+                isIndex: false,
+            }, {
+                path: '',
+                url: 'https://lemosen.github.io/web_plugin/common/index.html',
+                isIndex: true,
+            }]
+        }
+
+        lemosen.router.init(routerConfig)
 
         function openAlert() {
             lemosen.alert({
@@ -50,24 +73,11 @@
     <h2></h2>
     <h2></h2>
     <script>
-        console.log(window.location.href);
-        // window.addEventListener('load', f)
-        var routerConfig = [{
-            path: 'tab1',
-            url: 'https://lemosen.github.io/web_plugin/common/tab1.html',
-            isIndex: false,
-        }, {
-            path: 'tab2',
-            url: 'https://lemosen.github.io/web_plugin/common/tab2.html',
-            isIndex: false,
-        }, {
-            path: '',
-            url: 'https://lemosen.github.io/web_plugin/common/index.html',
-            isIndex: true,
-        }]
 
-        lemosen.router.init(routerConfig)
-
+        /**
+         * Object test
+         * @type {Object}
+         */
         var obj = new Object()
         var obj1 = {val1: 'asd'}
         Object.defineProperties(obj, {
@@ -113,19 +123,39 @@
 </div>
 <div id="tabs" class="lemosen-tabs">
     <a href="#" class="lemosen-tab">
-        home
+        <div class="lemosen-icon">
+            <img src="./assets/home.svg" width="30" height="30" type="image/svg+xml"
+                 pluginspage="http://www.adobe.com/svg/viewer/install/"/>
+        </div>
+        <span class="lemosen-tab-name">home</span>
     </a>
     <a href="#tab1" class="lemosen-tab">
-        tab1
+        <div class="lemosen-icon">
+            <img src="./assets/category.svg" width="30" height="30" type="image/svg+xml"
+                 pluginspage="http://www.adobe.com/svg/viewer/install/"/>
+        </div>
+        <span>tab1</span>
     </a>
     <a href="#tab2" class="lemosen-tab">
-        tab2
+        <div class="lemosen-icon">
+            <img src="./assets/loveLife.svg" width="30" height="30" type="image/svg+xml"
+                 pluginspage="http://www.adobe.com/svg/viewer/install/"/>
+        </div>
+        <span class="lemosen-tab-name">tab2</span>
     </a>
     <a href="#tab3" class="lemosen-tab">
-        tab3
+        <div class="lemosen-icon">
+            <img src="./assets/shoppingCart.svg" width="30" height="30" type="image/svg+xml"
+                 pluginspage="http://www.adobe.com/svg/viewer/install/"/>
+        </div>
+        <span class="lemosen-tab-name">tab3</span>
     </a>
     <a href="#tab4" class="lemosen-tab">
-        tab4
+        <div class="lemosen-icon">
+            <img src="./assets/customerCenter.svg" width="30" height="30" type="image/svg+xml"
+                 pluginspage="http://www.adobe.com/svg/viewer/install/"/>
+        </div>
+        <span class="lemosen-tab-name">tab4</span>
     </a>
 </div>
 </body>
