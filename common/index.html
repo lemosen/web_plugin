@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 100%;">
+<html lang="en" style="height: 100%;" xmlns:lemosen>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content=" initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -13,20 +13,13 @@
 
 <div id="sub-content" style="display: none"></div>
 <div id="main-content" style="background: white;height: 100%">
+    <lemosen:tab></lemosen:tab>
     <div style="margin: 0 ;text-align:center;height: fit-content;background-color:#f8f8f8 ">
         <h2 style="margin:0;padding: 5px"> web common plugin</h2>
     </div>
     <script>
 
-        function test() {
-
-        }
-
         function openAlert() {
-            // lemosen.alert('alert test ', function (e) {
-            //     alert("i am callback")
-            // },"tip","ok")
-            // let
             lemosen.alert({
                 title: "tip",
                 content: "alert test ",
@@ -36,11 +29,6 @@
                     alert("i am callback")
                 }
             })
-        }
-
-        function aaa(param) {
-            console.log('i sure')
-            console.log(param);
         }
 
         function openModal() {
@@ -59,46 +47,26 @@
     <button onclick="openModal()">
         modal
     </button>
-    <td>asd</td>
     <h2></h2>
     <h2></h2>
     <script>
         console.log(window.location.href);
         // window.addEventListener('load', f)
-        window.addEventListener('hashchange', f)
+        var routerConfig = [{
+            path: 'tab1',
+            url: 'https://lemosen.github.io/web_plugin/common/tab1.html',
+            isIndex: false,
+        }, {
+            path: 'tab2',
+            url: 'https://lemosen.github.io/web_plugin/common/tab2.html',
+            isIndex: false,
+        }, {
+            path: '',
+            url: 'https://lemosen.github.io/web_plugin/common/index.html',
+            isIndex: true,
+        }]
 
-        function f(e) {
-            var isMain = false;
-            var xmlhttp = new XMLHttpRequest();
-            if (e.newURL.split('#')[1] === 'tab1') {
-                // xmlhttp.open("GET", './tab1.html', true); //第三个参数是同步异步,主线程只能异步
-                xmlhttp.open("GET", 'https://lemosen.github.io/web_plugin/common/tab1.html', true); //第三个参数是同步异步,主线程只能异步
-            }
-            else if (e.newURL.split('#')[1] === 'tab2') {
-                // xmlhttp.open("GET", './tab2.html', true); //第三个参数是同步异步,主线程只能异步
-                xmlhttp.open("GET", 'https://lemosen.github.io/web_plugin/common/tab2.html', true); //第三个参数是同步异步,主线程只能异步
-            } else {
-                // xmlhttp.open("GET", './index.html', true);
-                xmlhttp.open("GET", 'https://lemosen.github.io/web_plugin/common/index.html', true);
-                isMain = true;
-            }
-            xmlhttp.send();
-            xmlhttp.onreadystatechange = function () {//服务器返回值的处理函数，此处使用匿名函数进行实现
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    var responseText = xmlhttp.responseText;
-                    if (isMain) {
-                        document.getElementById('main-content').style.display = 'block';
-                        document.getElementById('sub-content').style.display = 'none';
-                    } else {
-                        document.getElementById('sub-content').innerHTML = responseText;
-                        document.getElementById('main-content').style.display = 'none';
-                        document.getElementById('sub-content').style.display = 'block';
-                    }
-
-                }
-            };
-            console.log(e);
-        }
+        lemosen.router.init(routerConfig)
 
         var obj = new Object()
         var obj1 = {val1: 'asd'}
@@ -117,29 +85,29 @@
         var A = function () {
         };
         var B = {};
-        console.log(A.__proto__)
-        console.log(B.__proto__)
-        console.log(A.__proto__.__proto__)
-        console.log(B.__proto__)
-        console.log(A.prototype)
-        console.log(B.prototype)
+        // console.log(A.__proto__)
+        // console.log(B.__proto__)
+        // console.log(A.__proto__.__proto__)
+        // console.log(B.__proto__)
+        // console.log(A.prototype)
+        // console.log(B.prototype)
         document.getElementById('testInput').addEventListener('keyup', function () {
             obj1.val1 = document.getElementById('testInput').value;
             document.getElementById('testInput1').innerHTML = document.getElementById('testInput').value
             console.log(obj1)
         }, false)
-        function live(target, type, fn){    //元素类型，事件类型，执行函数
-            document.onkeyup = function(event){
-                var e = event ? event : window.event;
-                console.log(e.type);
-                if(e.type == type && e.target.id.toLocaleLowerCase() == target){
-                    fn();    //如果元素类型和事件类型同时匹配,则执行函数
-                }
-            }
-        }
-        live("testInput", "keyup", function(){
-            alert("live");
-        });
+        // function live(target, type, fn){    //元素类型，事件类型，执行函数
+        //     document.onkeyup = function(event){
+        //         var e = event ? event : window.event;
+        //         console.log(e.type);
+        //         if(e.type == type && e.target.id.toLocaleLowerCase() == target){
+        //             fn();    //如果元素类型和事件类型同时匹配,则执行函数
+        //         }
+        //     }
+        // }
+        // live("testInput", "keyup", function(){
+        //     alert("live");
+        // });
     </script>
 
 </div>
