@@ -19,7 +19,12 @@
             },
             popupCallback: function (isSuccess) {
                 if (isSuccess) {
-                    this.prototype.successCallBack()
+                    lemosen.prototype.modalParam !== undefined ? this.prototype.successCallBack(lemosen.prototype.modalParam)
+                        : this.prototype.successCallBack()
+
+                }
+                if (lemosen.prototype.modalParam !== undefined) {
+                    this.prototype.successCallBack(lemosen.prototype.modalParam)
                 }
                 document.getElementsByClassName('lemosen-popup-body').item(0).classList.add('lemosen-fadeOut')
                 setTimeout(function () {
@@ -105,22 +110,22 @@
 
             /**
              * arguments
-             * 0 content                require
-             * 1 dismiss
-             * 2 width      vw
+             * html
+             * url
+             * callback
              */
             modal: function () {
-                if (arguments[1] === undefined) {
-                    arguments[1] = function () {
+                if (arguments[0].callback === undefined) {
+                    arguments[0].callback = function () {
                     }
                 }
-                var width = arguments[2] ? arguments[2] + '%' : 35 + '%';
+                this.prototype.successCallBack = arguments[0].callback;
                 var htmlDivElement = document.createElement('div');
-                htmlDivElement.classList.add(['lemosen-popup']);
+                htmlDivElement.classList.add('lemosen-popup');
                 htmlDivElement.innerHTML +=
-                    '<div onclick="lemosen.stopCloseEvent(event)" class="lemosen-popup-body  lemosen-bounce" style="width: ' + width + '">' +
+                    '<div onclick="lemosen.stopCloseEvent(event)" class="lemosen-popup-body  lemosen-bounce" >' +
                     // '<div class="lemosen-popup-head"><span class="lemosen-popup-close"  onclick="lemosen.modalClose()">X</span></div>' +
-                    '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
+                    '<div class="lemosen-popup-content">' + arguments[0].html + '</div>' +
                     '</div>';
                 var documentFragment = document.createDocumentFragment();
                 documentFragment.appendChild(htmlDivElement);
@@ -141,11 +146,11 @@
                  *  url https://lemosen.github.io/web_plugin/common/tab1.html
                  *  isIndex true
                  *  cacheHtml true
+                 * tabs
                  */
-                routerConfig: {noCache: undefined, routers: []},
+                routerConfig: {noCache: undefined, routers: [], tabs: []},
                 init: function (routerConfig) {
-                    console.log(window.location.href);
-
+                    // document.getElementsByTagName('html').item(0).setAttribute('xmlns','lemosen')
                     if (routerConfig.noCache) {
                         lemosen.router.routerConfig.noCache = routerConfig.noCache
                     } else {
@@ -156,11 +161,29 @@
                         rc.push({url: routerConfig.routers[i].url, path: routerConfig.routers[i].path, isIndex: routerConfig.routers[i].isIndex, cacheHtml: undefined})
                     }
                     lemosen.router.routerConfig.routers = rc;
-
+                    lemosen.router.routerConfig.tabs = routerConfig.tabs;
                     window.addEventListener('hashchange', lemosen.router.match)
+                    /**
+                     * tab 操作
+                     * @type {Element}
+                     */
+                    var elementsByTagName = document.getElementsByTagName('lemosen:tabs').item(0);
 
-                    var location = window.location
-                    location.newURL = window.location.href
+                    elementsByTagName.classList.add('lemosen-tabs');
+                    var tabsHtml = ''
+                    for (var i = 0; i < routerConfig.tabs.length; i++) {
+                        tabsHtml += ' <a href="#' + routerConfig.tabs[i].path + '" class="lemosen-tab">' +
+                            '<div class="lemosen-icon">' +
+                            '<img src="' + routerConfig.tabs[i].icon + '" width="30" height="30" type="image/svg+xml"' +
+                            '         pluginspage="http://www.adobe.com/svg/viewer/install/"/>' +
+                            '</div>' +
+                            '<span class="lemosen-tab-name">' + routerConfig.tabs[i].name + '</span>' +
+                            '</a>'
+
+                    }
+                    elementsByTagName.innerHTML = tabsHtml;
+                    var location = window.location;
+                    location.newURL = window.location.href;
                     lemosen.router.match(location)
                     // window.addEventListener('load', f)
                 },
@@ -208,9 +231,7 @@
                         xmlhttp.onreadystatechange = function () {//服务器返回值的处理函数，此处使用匿名函数进行实现
                             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                                 lemosen.router.routerConfig.routers[routerIndex].cacheHtml = xmlhttp.responseText
-                                var responseText = xmlhttp.responseText;
-                                isMainf(isMain, responseText)
-
+                                isMainf(isMain, xmlhttp.responseText)
                             }
                         };
                     }

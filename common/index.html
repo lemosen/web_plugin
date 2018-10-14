@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 100%;" xmlns:lemosen>
+<html lang="en" style="height: 100%;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content=" initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -17,55 +17,7 @@
     <div style="margin: 0 ;text-align:center;height: fit-content;background-color:#f8f8f8 ">
         <h2 style="margin:0;padding: 5px"> web common plugin</h2>
     </div>
-    <script>
-        function show() {
-            // console.log(document.getElementsByTagName('lemosen:tab').item(0).getAttribute('a'));
-            // console.log(document.getElementsByTagName('lemosen:tab'));
-        }
 
-        var routerConfig = {
-            // noCache: true,
-            routers: [{
-                path: 'tab1',
-                url: 'https://lemosen.github.io/web_plugin/common/tab1.html',
-                isIndex: false,
-            }, {
-                path: 'tab2',
-                url: 'https://lemosen.github.io/web_plugin/common/tab2.html',
-                isIndex: false,
-            }, {
-                path: '',
-                url: 'https://lemosen.github.io/web_plugin/common/index.html',
-                isIndex: true,
-            }]
-        }
-
-        lemosen.router.init(routerConfig)
-
-        function openAlert() {
-            lemosen.alert({
-                title: "tip",
-                content: "alert test ",
-                okText: "ok",
-                cancelText: "cancel",
-                callback: function (e) {
-                    alert("i am callback")
-                }
-            })
-        }
-
-        function openModal() {
-            var a =
-            lemosen.modal({
-                html: '<h1>title</h1><h2>title1</h2><p>content</p>',
-                url:'',
-                callback: function (param) {
-                    console.log('i sure')
-                    console.log(param);
-                }
-            })
-        }
-    </script>
     <input style="border-bottom: 1px solid #f8f8f8" type="text" id="testInput" title="test"/>
     <div id="testInput1"></div>
     <button onclick="openAlert()">
@@ -76,91 +28,146 @@
     </button>
     <h2></h2>
     <h2></h2>
-    <script>
 
-        /**
-         * Object test
-         * @type {Object}
-         */
-        var obj = new Object()
-        var obj1 = {val1: 'asd'}
-        Object.defineProperties(obj, {
-            val1: {
-                value: '张三',
-                configurable: true,
-                writable: false,
-                enumerable: true
+
+</div>
+<lemosen:tabs></lemosen:tabs>
+<script>
+    function show() {
+        // console.log(document.getElementsByTagName('lemosen:tab').item(0).getAttribute('a'));
+        // console.log(document.getElementsByTagName('lemosen:tab'));
+    }
+
+    var routerConfig = {
+        // noCache: true,
+        routers: [{
+            path: 'tab1',
+            url: 'https://lemosen.github.io/web_plugin/common/tab1.html',
+            isIndex: false,
+        }, {
+            path: 'tab2',
+            url: 'https://lemosen.github.io/web_plugin/common/tab2.html',
+            isIndex: false,
+        }, {
+            path: '',
+            url: 'https://lemosen.github.io/web_plugin/common/index.html',
+            isIndex: true,
+        }],
+        tabs:[{name:'home',icon:'./assets/home.svg',path:''},
+            {name:'tab1',icon:'./assets/category.svg',path:'tab1'},
+            {name:'tab2',icon:'./assets/loveLife.svg',path:'tab2'},
+            {name:'home',icon:'./assets/shoppingCart.svg',path:''},
+            {name:'home',icon:'./assets/customerCenter.svg',path:''}]
+    }
+
+    lemosen.router.init(routerConfig)
+
+    function openAlert() {
+        lemosen.alert({
+            title: "tip",
+            content: "alert test ",
+            okText: "ok",
+            cancelText: "cancel",
+            callback: function (e) {
+                alert("i am callback")
             }
         })
-        // console.log(obj)
-        // console.log(obj1)
-        // console.log(Object.getOwnPropertyDescriptors(obj1));
-        // console.log(Object.getOwnPropertyDescriptors(obj));
-        var A = function () {
-        };
-        var B = {};
-        // console.log(A.__proto__)
-        // console.log(B.__proto__)
-        // console.log(A.__proto__.__proto__)
-        // console.log(B.__proto__)
-        // console.log(A.prototype)
-        // console.log(B.prototype)
-        document.getElementById('testInput').addEventListener('keyup', function () {
-            obj1.val1 = document.getElementById('testInput').value;
-            document.getElementById('testInput1').innerHTML = document.getElementById('testInput').value
-            console.log(obj1)
-        }, false)
-        // function live(target, type, fn){    //元素类型，事件类型，执行函数
-        //     document.onkeyup = function(event){
-        //         var e = event ? event : window.event;
-        //         console.log(e.type);
-        //         if(e.type == type && e.target.id.toLocaleLowerCase() == target){
-        //             fn();    //如果元素类型和事件类型同时匹配,则执行函数
-        //         }
-        //     }
-        // }
-        // live("testInput", "keyup", function(){
-        //     alert("live");
-        // });
-    </script>
+    }
 
-</div>
-<div id="tabs" class="lemosen-tabs">
-    <a href="#" class="lemosen-tab">
-        <div class="lemosen-icon">
-            <img src="./assets/home.svg" width="30" height="30" type="image/svg+xml"
-                 pluginspage="http://www.adobe.com/svg/viewer/install/"/>
-        </div>
-        <span class="lemosen-tab-name">home</span>
-    </a>
-    <a href="#tab1" class="lemosen-tab">
-        <div class="lemosen-icon">
-            <img src="./assets/category.svg" width="30" height="30" type="image/svg+xml"
-                 pluginspage="http://www.adobe.com/svg/viewer/install/"/>
-        </div>
-        <span>tab1</span>
-    </a>
-    <a href="#tab2" class="lemosen-tab">
-        <div class="lemosen-icon">
-            <img src="./assets/loveLife.svg" width="30" height="30" type="image/svg+xml"
-                 pluginspage="http://www.adobe.com/svg/viewer/install/"/>
-        </div>
-        <span class="lemosen-tab-name">tab2</span>
-    </a>
-    <a href="#tab3" class="lemosen-tab">
-        <div class="lemosen-icon">
-            <img src="./assets/shoppingCart.svg" width="30" height="30" type="image/svg+xml"
-                 pluginspage="http://www.adobe.com/svg/viewer/install/"/>
-        </div>
-        <span class="lemosen-tab-name">tab3</span>
-    </a>
-    <a href="#tab4" class="lemosen-tab">
-        <div class="lemosen-icon">
-            <img src="./assets/customerCenter.svg" width="30" height="30" type="image/svg+xml"
-                 pluginspage="http://www.adobe.com/svg/viewer/install/"/>
-        </div>
-        <span class="lemosen-tab-name">tab4</span>
-    </a>
-</div>
+    function openModal() {
+        lemosen.modal({
+            html: "<div><h1> i am a modal</h1>input<input type=\"text\"  id=\"test\" onkeyup=\" lemosen.setModalCallBackParam({asd: event.target.value});\"/></div>",
+            url: '',
+            callback: function (param) {
+                console.log('i sure')
+                console.log(param);
+            }
+        })
+    }
+</script>
+<script>
+
+    /**
+     * Object test
+     * @type {Object}
+     */
+    var obj = new Object()
+    var obj1 = {val1: 'asd'}
+    Object.defineProperties(obj, {
+        val1: {
+            value: '张三',
+            configurable: true,
+            writable: false,
+            enumerable: true
+        }
+    })
+    // console.log(obj)
+    // console.log(obj1)
+    // console.log(Object.getOwnPropertyDescriptors(obj1));
+    // console.log(Object.getOwnPropertyDescriptors(obj));
+    var A = function () {
+    };
+    var B = {};
+    // console.log(A.__proto__)
+    // console.log(B.__proto__)
+    // console.log(A.__proto__.__proto__)
+    // console.log(B.__proto__)
+    // console.log(A.prototype)
+    // console.log(B.prototype)
+    document.getElementById('testInput').addEventListener('keyup', function () {
+        obj1.val1 = document.getElementById('testInput').value;
+        document.getElementById('testInput1').innerHTML = document.getElementById('testInput').value
+        console.log(obj1)
+    }, false)
+    // function live(target, type, fn){    //元素类型，事件类型，执行函数
+    //     document.onkeyup = function(event){
+    //         var e = event ? event : window.event;
+    //         console.log(e.type);
+    //         if(e.type == type && e.target.id.toLocaleLowerCase() == target){
+    //             fn();    //如果元素类型和事件类型同时匹配,则执行函数
+    //         }
+    //     }
+    // }
+    // live("testInput", "keyup", function(){
+    //     alert("live");
+    // });
+</script>
+<!--<div class="lemosen-tabs">-->
+    <!--<a href="#" class="lemosen-tab">-->
+        <!--<div class="lemosen-icon">-->
+            <!--<img src="./assets/home.svg" width="30" height="30" type="image/svg+xml"-->
+                 <!--pluginspage="http://www.adobe.com/svg/viewer/install/"/>-->
+        <!--</div>-->
+        <!--<span class="lemosen-tab-name">home</span>-->
+    <!--</a>-->
+    <!--<a href="#tab1" class="lemosen-tab">-->
+        <!--<div class="lemosen-icon">-->
+            <!--<img src="./assets/category.svg" width="30" height="30" type="image/svg+xml"-->
+                 <!--pluginspage="http://www.adobe.com/svg/viewer/install/"/>-->
+        <!--</div>-->
+        <!--<span>tab1</span>-->
+    <!--</a>-->
+    <!--<a href="#tab2" class="lemosen-tab">-->
+        <!--<div class="lemosen-icon">-->
+            <!--<img src="./assets/loveLife.svg" width="30" height="30" type="image/svg+xml"-->
+                 <!--pluginspage="http://www.adobe.com/svg/viewer/install/"/>-->
+        <!--</div>-->
+        <!--<span class="lemosen-tab-name">tab2</span>-->
+    <!--</a>-->
+    <!--<a href="#tab3" class="lemosen-tab">-->
+        <!--<div class="lemosen-icon">-->
+            <!--<img src="./assets/shoppingCart.svg" width="30" height="30" type="image/svg+xml"-->
+                 <!--pluginspage="http://www.adobe.com/svg/viewer/install/"/>-->
+        <!--</div>-->
+        <!--<span class="lemosen-tab-name">tab3</span>-->
+    <!--</a>-->
+    <!--<a href="#tab4" class="lemosen-tab">-->
+        <!--<div class="lemosen-icon">-->
+            <!--<img src="./assets/customerCenter.svg" width="30" height="30" type="image/svg+xml"-->
+                 <!--pluginspage="http://www.adobe.com/svg/viewer/install/"/>-->
+        <!--</div>-->
+        <!--<span class="lemosen-tab-name">tab4</span>-->
+    <!--</a>-->
+<!--</div>-->
 </body>
 </html>
