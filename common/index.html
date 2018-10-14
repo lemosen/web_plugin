@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 100%;" xmlns:lemosen xmlns:lemosen="http://www.w3.org/1999/html">
+<html lang="en" style="height: 100%;" xmlns:lemosen>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content=" initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -18,12 +18,13 @@
         <h2 style="margin:0;padding: 5px"> web common plugin</h2>
     </div>
     <script>
-        function show(){
+        function show() {
             // console.log(document.getElementsByTagName('lemosen:tab').item(0).getAttribute('a'));
             // console.log(document.getElementsByTagName('lemosen:tab'));
         }
+
         var routerConfig = {
-            noCache: true,
+            // noCache: true,
             routers: [{
                 path: 'tab1',
                 url: 'https://lemosen.github.io/web_plugin/common/tab1.html',
@@ -54,11 +55,15 @@
         }
 
         function openModal() {
-            lemosen.modal('<h1>title</h1><h2>title1</h2><p>content</p>', function (param) {
-                console.log('i sure')
-                console.log(param);
-            }, {a: 1}, function () {
-            }, {}, 50)
+            var a =
+            lemosen.modal({
+                html: '<h1>title</h1><h2>title1</h2><p>content</p>',
+                url:'',
+                callback: function (param) {
+                    console.log('i sure')
+                    console.log(param);
+                }
+            })
         }
     </script>
     <input style="border-bottom: 1px solid #f8f8f8" type="text" id="testInput" title="test"/>

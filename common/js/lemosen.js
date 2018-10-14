@@ -12,8 +12,6 @@
                 screenWidth: window.screen.width,
                 screenHeight: window.screen.height,
                 successCallBack: {},
-                cancelCallBackParam: {},
-                modalDismiss: {},
                 modalParam: undefined
             },
             isOnlyPopup: function () {
@@ -71,17 +69,7 @@
                 this.prototype.successCallBack = arguments[0].callback
                 var htmlDivElement = document.createElement('div');
                 htmlDivElement.classList.add('lemosen-popup')
-                console.log(document.getElementsByTagName('style'));
-                // htmlDivElement.classList.add('lemosen-bounce')
-
-                // var root = htmlDivElement.createShadowRoot();
-                // var element = root.createNode('style');
-                // element.innerHTML=' background-color:red'
-                // root.classList.add(['lemosen-popup-body','lemosen-popup-head'])
-                // root.style='  background-color:red'
-                // root.innerHTML =
-                    htmlDivElement.innerHTML =
-                    '<style></style>'+
+                htmlDivElement.innerHTML =
                     '<div class="lemosen-popup-body lemosen-bounce" onclick="lemosen.stopCloseEvent(event)">' +
                     '<div class="lemosen-popup-head">' + arguments[0].title + '</div>' +
                     '<div class="lemosen-popup-content">' + arguments[0].content + '</div>' +
@@ -141,6 +129,9 @@
                     lemosen.popupCallback(false)
                 })
             },
+            setModalCallBackParam: function (modalParam) {
+                lemosen.prototype.modalParam = modalParam
+            },
 
             router: {
                 /**
@@ -178,11 +169,11 @@
                     var cacheHtml = false;
                     var xmlhttp = new XMLHttpRequest();
                     var url = '';
-                    var routerIndex
+                    var routerIndex;
                     for (var i = 0; i < lemosen.router.routerConfig.routers.length; i++) {
                         var e = lemosen.router.routerConfig.routers[i]
                         if (e.path === location.newURL.split('#')[1]) {
-                            routerIndex = i
+                            routerIndex = i;
                             url = e.url;
                             isMain = e.isIndex;
                             if (e.cacheHtml !== undefined) {
@@ -192,24 +183,22 @@
                     }
                     var isMainf = function (isMain, html) {
                         if (isMain) {
-                            document.getElementById('main-content').classList.add('lemosen-slideInLeft');
-                            setTimeout(function (){
-                                document.getElementById('main-content').classList.remove('lemosen-slideInLeft')
-                            },500)
                             document.getElementById('main-content').style.display = 'block';
                             document.getElementById('sub-content').style.display = 'none';
-
+                            animation('main-content')
                         } else {
-                            document.getElementById('sub-content').classList.add('lemosen-slideInLeft');
-                            setTimeout(function (){
-                                document.getElementById('sub-content').classList.remove('lemosen-slideInLeft')
-                            },500)
                             document.getElementById('sub-content').innerHTML = html;
                             document.getElementById('main-content').style.display = 'none';
                             document.getElementById('sub-content').style.display = 'block';
-
+                            animation('sub-content')
                         }
-                    }
+                    };
+                    var animation = function (target) {
+                        document.getElementById(target).classList.add('lemosen-slideInLeft');
+                        setTimeout(function () {
+                            document.getElementById(target).classList.remove('lemosen-slideInLeft')
+                        }, 500)
+                    };
 
                     if (cacheHtml && !lemosen.router.routerConfig.noCache) {
                         isMainf(isMain, lemosen.router.routerConfig.routers[routerIndex].cacheHtml)
