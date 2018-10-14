@@ -23,7 +23,7 @@
 .lemosen-tabs {
     bottom: 0;
     background-color: #f8f8f8;
-    height: 10%;
+    height: 60px;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -34,7 +34,6 @@
 }
 
 .lemosen-tab {
-    margin-top: 15px;
     max-width: 240px;
     font-family: inherit;
     font-style: inherit;

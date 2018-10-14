@@ -71,12 +71,12 @@
                 // window.addEventListener('load', f)
             },
             clickTab: function (event) {
-                var elementsByClassName = document.getElementsByClassName('lemosen-tab');
-                for (var i = 0; i < elementsByClassName.length; i++) {
-                    var htmlImageElement = elementsByClassName[i].getElementsByTagName('img').item(0);
-                    htmlImageElement.setAttribute('src', htmlImageElement.getAttribute('src').replace('_on.svg', '.svg'))
-                }
-                event.target.setAttribute('src', event.target.getAttribute('src').replace('.svg', '_on.svg'));
+                // var elementsByClassName = document.getElementsByClassName('lemosen-tab');
+                // for (var i = 0; i < elementsByClassName.length; i++) {
+                //     var htmlImageElement = elementsByClassName[i].getElementsByTagName('img').item(0);
+                //     htmlImageElement.setAttribute('src', htmlImageElement.getAttribute('src').replace('_on.svg', '.svg'))
+                // }
+                // event.target.setAttribute('src', event.target.getAttribute('src').replace('.svg', '_on.svg'));
             },
             match: function (location) {
                 var isMain = false;
@@ -84,6 +84,9 @@
                 var xmlhttp = new XMLHttpRequest();
                 var url = '';
                 var routerIndex;
+                if (location.newURL.split('#')[1] === undefined) {
+                    location.newURL += "#"
+                }
                 for (var i = 0; i < lemosen.router.routerConfig.routers.length; i++) {
                     var e = lemosen.router.routerConfig.routers[i];
                     if (e.path === location.newURL.split('#')[1]) {
@@ -94,7 +97,7 @@
                             cacheHtml = true;
                         }
                         break;
-                    } else if (!location.newURL.split('#')[1]||e.path === '' && '' === location.newURL.split('#')[1]) {
+                    } else if (e.path === '' && '' === location.newURL.split('#')[1]) {
                         routerIndex = i;
                         url = 'https://lemosen.github.io/web_plugin/common/';
                         isMain = true;
@@ -104,6 +107,8 @@
                         break;
                     }
                 }
+
+
                 var isMainf = function (isMain, html) {
                     if (isMain) {
                         document.getElementsByClassName('lemosen-main-content').item(0).style.display = 'block';

@@ -129,6 +129,9 @@
                 if (arguments[0].animationOut === undefined) {
                     arguments[0].animationOut = 'lemosen-bounceOutDown'
                 }
+                if (arguments[0].delay === undefined) {
+                    arguments[0].delay = 1.5
+                }
                 lemosen.animationConfig(arguments[0]);
                 var htmlDivElement = document.createElement('div');
                 htmlDivElement.classList.add('lemosen-toast')
