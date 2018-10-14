@@ -22,7 +22,7 @@
 
 .lemosen-tabs {
     bottom: 0;
-    background-color: var(--tabBackground);
+    background-color: #f8f8f8;
     height: 10%;
     width: 100%;
     justify-content: center;
@@ -30,7 +30,7 @@
     display: flex;
     position: fixed;
     contain: strict;
-    border-top: 0.55px solid var(--divider);
+    border-top: 0.55px solid #dadada;
 }
 
 .lemosen-tab {
@@ -75,7 +75,7 @@
 }
 
 .lemosen-tab:hover {
-    color: var(--customerMain);
+    color: #4056ae;
 }
 
 .lemosen-icon {
@@ -182,23 +182,23 @@
     flex: 1 1 auto;
     min-width: 50%;
     height: 44px;
-    border-top: 1px solid var(--light);
+    border-top: 1px solid #f4f4f4;
     border-right: 0;
     border-left: 0;
     border-bottom: 0;
     font-size: 17px;
-    color: var(--primary);
+    color: #488aff;
     background-color: transparent;
     text-align: center;
 }
 
 .lemosen-popup-sure-button {
-    border-right: 1px solid var(--light);
+    border-right: 1px solid #f4f4f4;
 
 }
 
 .lemosen-popup-cancel-button {
-    border-left: 1px solid var(--light);
+    border-left: 1px solid #f4f4f4;
 
 }
 
@@ -228,11 +228,11 @@
 }
 
 .lemosen-popup-sure-text {
-    color: var(--primary);
+    color: #488aff;
 }
 
 .lemosen-popup-cancel-text {
-    color: var(--danger);
+    color: #f53d3d;
 }
 
 .lemosen-popup-close {
@@ -250,7 +250,7 @@
     max-width: 700px;
     z-index: 10;
     padding: 15px;
-    background: var(--background);
+    background: #f2f2f2;
     justify-content: center;
     align-items: center;
 }
