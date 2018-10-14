@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 100%;" xmlns:lemosen>
+<html lang="en" style="height: 100%;" xmlns:lemosen xmlns:lemosen="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content=" initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -10,7 +10,6 @@
     <script src="js/lemosen.js"></script>
 </head>
 <body style="margin: 0;height: 100%">
-
 <div id="sub-content" style="display: none"></div>
 <div id="main-content" style="background: white;height: 100%">
     <!--<lemosen:tab a="sd">asd</lemosen:tab>-->
@@ -20,8 +19,8 @@
     </div>
     <script>
         function show(){
-            document.getElementsByTagName('lemosen:tab').item(0).innerHTML="asdssss"
-            console.log(document.getElementsByTagName('lemosen:tab'));
+            // console.log(document.getElementsByTagName('lemosen:tab').item(0).getAttribute('a'));
+            // console.log(document.getElementsByTagName('lemosen:tab'));
         }
         var routerConfig = {
             noCache: true,

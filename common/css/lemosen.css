@@ -78,7 +78,7 @@
 }
 
 .lemosen-icon img {
-    height: 2.5rem;
+    /*height: 2.5rem;*/
     width: 100%;
     display: block;
 }
@@ -130,12 +130,23 @@
     contain: content;
     border: 0;
 }
-
+.lemosen-bounce{
+    animation: bounceIn  1s linear;
+    -webkit-animation: bounceIn 1s linear;
+    -moz-animation: bounceIn 1s linear;
+    -ms-animation: bounceIn 1s linear;
+}
 .lemosen-fadeOut {
-    animation: fadeOut 1s linear;
-    -webkit-animation: fadeOut 1s linear;
-    -moz-animation: fadeOut 1s linear;
-    -ms-animation: fadeOut 1s linear;
+    animation: bounceOut  1s linear;
+    -webkit-animation: bounceOut 1s linear;
+    -moz-animation: bounceOut 1s linear;
+    -ms-animation: bounceOut 1s linear;
+}
+.lemosen-slideInLeft {
+    animation: slideInLeft  0.5s linear;
+    -webkit-animation: slideInLeft 0.5s linear;
+    -moz-animation: slideInLeft 0.5s linear;
+    -ms-animation: slideInLeft 0.5s linear;
 }
 
 .lemosen-popup-head {

@@ -23,7 +23,7 @@
                 if (isSuccess) {
                     this.prototype.successCallBack()
                 }
-                document.getElementsByClassName('lemosen-popup').item(0).classList.add('lemosen-fadeOut')
+                document.getElementsByClassName('lemosen-popup-body').item(0).classList.add('lemosen-fadeOut')
                 setTimeout(function () {
                     document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0))
                 }, 900)
@@ -46,6 +46,7 @@
              * }
              */
             alert: function () {
+
                 if (!this.isOnlyPopup()) {
                     this.toast();
                     return
@@ -69,11 +70,19 @@
                 }
                 this.prototype.successCallBack = arguments[0].callback
                 var htmlDivElement = document.createElement('div');
-                htmlDivElement.classList.add(['lemosen-popup'])
+                htmlDivElement.classList.add('lemosen-popup')
+                console.log(document.getElementsByTagName('style'));
+                // htmlDivElement.classList.add('lemosen-bounce')
 
-                htmlDivElement.innerHTML =
-                    // '<div class="lemosen-popup" >' +
-                    '<div class="lemosen-popup-body" onclick="lemosen.stopCloseEvent(event)">' +
+                // var root = htmlDivElement.createShadowRoot();
+                // var element = root.createNode('style');
+                // element.innerHTML=' background-color:red'
+                // root.classList.add(['lemosen-popup-body','lemosen-popup-head'])
+                // root.style='  background-color:red'
+                // root.innerHTML =
+                    htmlDivElement.innerHTML =
+                    '<style></style>'+
+                    '<div class="lemosen-popup-body lemosen-bounce" onclick="lemosen.stopCloseEvent(event)">' +
                     '<div class="lemosen-popup-head">' + arguments[0].title + '</div>' +
                     '<div class="lemosen-popup-content">' + arguments[0].content + '</div>' +
                     '<div class="lemosen-popup-buttons">' +
@@ -85,7 +94,6 @@
                     '</button>' +
                     '</div>' +
                     '</div>'
-                // '</div>'
                 var documentFragment = document.createDocumentFragment();
                 documentFragment.appendChild(htmlDivElement);
                 document.body.appendChild(documentFragment)
@@ -95,8 +103,15 @@
                 })
 
             },
-
+            /**
+             * delay
+             * position
+             * msg
+             */
             toast: function () {
+                // arguments[0].delay
+                // arguments[0].position
+                // arguments[0].msg
                 alert("toast")
             },
 
@@ -113,14 +128,12 @@
                 }
                 var width = arguments[2] ? arguments[2] + '%' : 35 + '%';
                 var htmlDivElement = document.createElement('div');
-                htmlDivElement.classList.add(['lemosen-popup'])
+                htmlDivElement.classList.add(['lemosen-popup']);
                 htmlDivElement.innerHTML +=
-                    // '<div class="lemosen-popup">' +
-                    '<div onclick="lemosen.stopCloseEvent(event)" class="lemosen-popup-body" style="width: ' + width + '">' +
+                    '<div onclick="lemosen.stopCloseEvent(event)" class="lemosen-popup-body  lemosen-bounce" style="width: ' + width + '">' +
                     // '<div class="lemosen-popup-head"><span class="lemosen-popup-close"  onclick="lemosen.modalClose()">X</span></div>' +
                     '<div class="lemosen-popup-content">' + arguments[0] + '</div>' +
-                    '</div>'
-                // '</div>';
+                    '</div>';
                 var documentFragment = document.createDocumentFragment();
                 documentFragment.appendChild(htmlDivElement);
                 document.body.appendChild(documentFragment)
@@ -129,55 +142,6 @@
                 })
             },
 
-
-            // saveCallBackParam(param, isSure) {
-            //     if (param && param !== {}) {
-            //         isSure ? window.lemosen.prototype.sureCallBackParam = param
-            //             : window.lemosen.prototype.cancelCallBackParam = param
-            //     }
-            // },
-            // createDocument: function (htmlDivElement) {
-            //     let documentFragment = document.createDocumentFragment();
-            //     documentFragment.appendChild(htmlDivElement);
-            //     document.body.appendChild(documentFragment)
-            // },
-            // initPopup: function () {
-            //     lemosen.saveCallBackParam(arguments[2] ? arguments[2] : {}, true);
-            //     lemosen.saveCallBackParam(arguments[4] ? arguments[4] : {}, false);
-            // },
-            // alertSure: function (fun) {
-            //     if (window.lemosen.prototype.sureCallBackParam) {
-            //         fun(window.lemosen.prototype.sureCallBackParam)
-            //     }
-            //     document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0))
-            // },
-            // alertCancel: function (fun) {
-            //     if (window.lemosen.prototype.cancelCallBackParam) {
-            //         fun(window.lemosen.prototype.cancelCallBackParam)
-            //     }
-            //     document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0))
-            // },
-            // /**
-            //  * 阻止点击模态框引起关闭事件
-            //  * @param event
-            //  */
-            // popupBodyClick: function (event) {
-            //     event.stopPropagation();
-            // },
-            // modalClose: function () {
-            //     if (this.prototype.modalParam) {
-            //         this.prototype.modalDismiss(this.prototype.modalParam)
-            //     }
-            //     document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0))
-            // },
-            // modalDismiss: function () {
-            //
-            // },
-            // setModalParam: function () {
-            //     if (arguments.length !== 0) {
-            //         lemosen.prototype.modalParam = arguments
-            //     }
-            // }
             router: {
                 /**
                  * isCache 是否启用缓存 默认是
@@ -228,14 +192,25 @@
                     }
                     var isMainf = function (isMain, html) {
                         if (isMain) {
+                            document.getElementById('main-content').classList.add('lemosen-slideInLeft');
+                            setTimeout(function (){
+                                document.getElementById('main-content').classList.remove('lemosen-slideInLeft')
+                            },500)
                             document.getElementById('main-content').style.display = 'block';
                             document.getElementById('sub-content').style.display = 'none';
+
                         } else {
+                            document.getElementById('sub-content').classList.add('lemosen-slideInLeft');
+                            setTimeout(function (){
+                                document.getElementById('sub-content').classList.remove('lemosen-slideInLeft')
+                            },500)
                             document.getElementById('sub-content').innerHTML = html;
                             document.getElementById('main-content').style.display = 'none';
                             document.getElementById('sub-content').style.display = 'block';
+
                         }
                     }
+
                     if (cacheHtml && !lemosen.router.routerConfig.noCache) {
                         isMainf(isMain, lemosen.router.routerConfig.routers[routerIndex].cacheHtml)
                     } else {
