@@ -230,8 +230,9 @@
                         xmlhttp.send();
                         xmlhttp.onreadystatechange = function () {//服务器返回值的处理函数，此处使用匿名函数进行实现
                             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                                lemosen.router.routerConfig.routers[routerIndex].cacheHtml = xmlhttp.responseText
-                                isMainf(isMain, xmlhttp.responseText)
+                                var responseText = xmlhttp.responseText;
+                                lemosen.router.routerConfig.routers[routerIndex].cacheHtml = responseText
+                                isMainf(isMain, responseText)
                             }
                         };
                     }
