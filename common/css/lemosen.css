@@ -30,10 +30,11 @@
     display: flex;
     position: fixed;
     contain: strict;
-    border-top: 0.55px solid #dadada;
+    border-top: 1px solid #dadada;
 }
 
 .lemosen-tab {
+    margin-top: 15px;
     max-width: 240px;
     font-family: inherit;
     font-style: inherit;
@@ -44,7 +45,7 @@
     text-align: inherit;
     white-space: inherit;
     color: inherit;
-    margin: 0;
+    /*margin: 0;*/
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

@@ -42,7 +42,7 @@
                 for (var i = 0; i < routerConfig.tabs.length; i++) {
                     tabsHtml += ' <a href="#' + routerConfig.tabs[i].path + '" onclick="lemosen.router.clickTab(event)" class="lemosen-tab">' +
                         '<div class="lemosen-icon">' +
-                        '<img src="' + routerConfig.tabs[i].icon + '" width="30" height="30" type="image/svg+xml"' +
+                        '<img src="' + routerConfig.tabs[i].icon + '" type="image/svg+xml"' +
                         '         pluginspage="http://www.adobe.com/svg/viewer/install/"/>' +
                         '</div>' +
                         '<span class="lemosen-tab-name">' + routerConfig.tabs[i].name + '</span>' +
@@ -94,7 +94,7 @@
                             cacheHtml = true;
                         }
                         break;
-                    } else if (e.path === '' && '' === location.newURL.split('#')[1]) {
+                    } else if (!location.newURL.split('#')[1]||e.path === '' && '' === location.newURL.split('#')[1]) {
                         routerIndex = i;
                         url = 'https://lemosen.github.io/web_plugin/common/';
                         isMain = true;
