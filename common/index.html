@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 100%;">
+<html lang="en" style="height: 100%;" xmlns:lemosen>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content=" initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -10,10 +10,7 @@
     <script src="js/lemosen.js"></script>
 </head>
 <body style="margin: 0;height: 100%">
-<div id="sub-content" style="display: none"></div>
-<div id="main-content" style="background: white;height: 100%">
-    <!--<lemosen:tab a="sd">asd</lemosen:tab>-->
-    <!--<button onclick="show()">test</button>-->
+<lemosen:content>
     <div style="margin: 0 ;text-align:center;height: fit-content;background-color:#f8f8f8 ">
         <h2 style="margin:0;padding: 5px"> web common plugin</h2>
     </div>
@@ -28,15 +25,9 @@
     </button>
     <h2></h2>
     <h2></h2>
-
-
-</div>
+</lemosen:content>
 <lemosen:tabs></lemosen:tabs>
 <script>
-    function show() {
-        // console.log(document.getElementsByTagName('lemosen:tab').item(0).getAttribute('a'));
-        // console.log(document.getElementsByTagName('lemosen:tab'));
-    }
 
     var routerConfig = {
         // noCache: true,
@@ -52,12 +43,16 @@
             path: '',
             url: 'https://lemosen.github.io/web_plugin/common/index.html',
             isIndex: true,
+        },{
+            path: 'tab3',
+            url: 'https://lemosen.github.io/web_plugin/common/tab1.html',
+            isIndex: true,
         }],
-        tabs:[{name:'home',icon:'./assets/home.svg',path:''},
-            {name:'tab1',icon:'./assets/category.svg',path:'tab1'},
-            {name:'tab2',icon:'./assets/loveLife.svg',path:'tab2'},
-            {name:'home',icon:'./assets/shoppingCart.svg',path:''},
-            {name:'home',icon:'./assets/customerCenter.svg',path:''}]
+        tabs: [{name: 'home', icon: './assets/home.svg', path: ''},
+            {name: 'tab1', icon: './assets/category.svg', path: 'tab1'},
+            {name: 'tab2', icon: './assets/loveLife.svg', path: 'tab2'},
+            {name: 'home', icon: './assets/shoppingCart.svg', path: ''},
+            {name: 'home', icon: './assets/customerCenter.svg', path: ''}]
     }
 
     lemosen.router.init(routerConfig)
@@ -132,42 +127,5 @@
     //     alert("live");
     // });
 </script>
-<!--<div class="lemosen-tabs">-->
-    <!--<a href="#" class="lemosen-tab">-->
-        <!--<div class="lemosen-icon">-->
-            <!--<img src="./assets/home.svg" width="30" height="30" type="image/svg+xml"-->
-                 <!--pluginspage="http://www.adobe.com/svg/viewer/install/"/>-->
-        <!--</div>-->
-        <!--<span class="lemosen-tab-name">home</span>-->
-    <!--</a>-->
-    <!--<a href="#tab1" class="lemosen-tab">-->
-        <!--<div class="lemosen-icon">-->
-            <!--<img src="./assets/category.svg" width="30" height="30" type="image/svg+xml"-->
-                 <!--pluginspage="http://www.adobe.com/svg/viewer/install/"/>-->
-        <!--</div>-->
-        <!--<span>tab1</span>-->
-    <!--</a>-->
-    <!--<a href="#tab2" class="lemosen-tab">-->
-        <!--<div class="lemosen-icon">-->
-            <!--<img src="./assets/loveLife.svg" width="30" height="30" type="image/svg+xml"-->
-                 <!--pluginspage="http://www.adobe.com/svg/viewer/install/"/>-->
-        <!--</div>-->
-        <!--<span class="lemosen-tab-name">tab2</span>-->
-    <!--</a>-->
-    <!--<a href="#tab3" class="lemosen-tab">-->
-        <!--<div class="lemosen-icon">-->
-            <!--<img src="./assets/shoppingCart.svg" width="30" height="30" type="image/svg+xml"-->
-                 <!--pluginspage="http://www.adobe.com/svg/viewer/install/"/>-->
-        <!--</div>-->
-        <!--<span class="lemosen-tab-name">tab3</span>-->
-    <!--</a>-->
-    <!--<a href="#tab4" class="lemosen-tab">-->
-        <!--<div class="lemosen-icon">-->
-            <!--<img src="./assets/customerCenter.svg" width="30" height="30" type="image/svg+xml"-->
-                 <!--pluginspage="http://www.adobe.com/svg/viewer/install/"/>-->
-        <!--</div>-->
-        <!--<span class="lemosen-tab-name">tab4</span>-->
-    <!--</a>-->
-<!--</div>-->
 </body>
 </html>

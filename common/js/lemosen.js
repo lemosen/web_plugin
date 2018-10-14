@@ -182,6 +182,23 @@
 
                     }
                     elementsByTagName.innerHTML = tabsHtml;
+
+                    /**
+                     * lemosen content init
+                     * @type {Element}
+                     */
+                    var content = document.getElementsByTagName('lemosen:content').item(0);
+                    var main = document.createElement('div');
+                    var sub = document.createElement('div');
+                    main.style.background = 'white';
+                    main.id = 'main-content';
+                    sub.id = 'sub-content';
+                    sub.style.display = 'none';
+                    main.innerHTML = content.innerHTML;
+                    content.innerHTML = ''
+                    content.appendChild(sub);
+                    content.appendChild(main);
+
                     var location = window.location;
                     location.newURL = window.location.href;
                     lemosen.router.match(location)
@@ -194,7 +211,7 @@
                     var url = '';
                     var routerIndex;
                     for (var i = 0; i < lemosen.router.routerConfig.routers.length; i++) {
-                        var e = lemosen.router.routerConfig.routers[i]
+                        var e = lemosen.router.routerConfig.routers[i];
                         if (e.path === location.newURL.split('#')[1]) {
                             routerIndex = i;
                             url = e.url;
@@ -202,6 +219,15 @@
                             if (e.cacheHtml !== undefined) {
                                 cacheHtml = true;
                             }
+                            break;
+                        } else if ('' === location.newURL.split('#')[1]) {
+                            routerIndex = i;
+                            url = 'https://lemosen.github.io/web_plugin/common/';
+                            isMain = true;
+                            if (e.cacheHtml !== undefined) {
+                                cacheHtml = true;
+                            }
+                            break;
                         }
                     }
                     var isMainf = function (isMain, html) {
