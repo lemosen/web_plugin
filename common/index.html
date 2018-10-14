@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/lemosen.css"/>
     <link rel="stylesheet" href="css/animate.css"/>
     <script src="js/lemosen.js"></script>
+    <script src="js/lemosen-router.js"></script>
 </head>
 <body style="margin: 0;height: 100%">
 <lemosen:content>
@@ -23,8 +24,9 @@
     <button onclick="openModal()">
         modal
     </button>
-    <h2></h2>
-    <h2></h2>
+    <button onclick="openToast()">
+        toast
+    </button>
 </lemosen:content>
 <lemosen:tabs></lemosen:tabs>
 <script>
@@ -48,14 +50,15 @@
             url: 'https://lemosen.github.io/web_plugin/common/tab1.html',
             isIndex: false,
         }],
-        tabs: [{name: 'home', icon: './assets/home.svg', path: ''},
-            {name: 'tab1', icon: './assets/category.svg', path: 'tab1'},
-            {name: 'tab2', icon: './assets/loveLife.svg', path: 'tab2'},
-            {name: 'home', icon: './assets/shoppingCart.svg', path: ''},
-            {name: 'home', icon: './assets/customerCenter.svg', path: ''}]
+        tabs: [{name: 'home',icon: './assets/home.svg', path: ''},
+               {name: 'tab1',icon: './assets/category.svg', path: 'tab1'},
+               {name: 'tab2',icon: './assets/loveLife.svg', path: 'tab2'},
+               {name: 'home',icon: './assets/shoppingCart.svg', path: ''},
+               {name: 'home',icon: './assets/customerCenter.svg', path: ''}]
     }
 
     lemosen.router.init(routerConfig)
+    lemosen.toast({position:'middle',msg:'welcome web plugin'})
 
     function openAlert() {
         lemosen.alert({
@@ -63,6 +66,8 @@
             content: "alert test ",
             okText: "ok",
             cancelText: "cancel",
+            animationIn: "lemosen-bounceIn",
+            animationOut: "lemosen-bounceOut",
             callback: function (e) {
                 alert("i am callback")
             }
@@ -78,6 +83,10 @@
                 console.log(param);
             }
         })
+    }
+
+    function openToast() {
+        lemosen.toast({msg:'Just use it'})
     }
 </script>
 <script>

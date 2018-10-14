@@ -4,11 +4,25 @@
     --danger: #f53d3d;
     --light: #f4f4f4;
     --dark: #222;
+    --background: #f2f2f2;
+    --tabBackground: #f8f8f8;
+    --divider: #dadada;
+    --customerMain: #4056ae;
+}
+
+.lemosen-main-content {
+    background-color: white;
+    height: 100%;
+}
+
+.lemosen-sub-content {
+    display: none;
+    height: 100%;
 }
 
 .lemosen-tabs {
     bottom: 0;
-    background-color: #f4f4f4;
+    background-color: var(--tabBackground);
     height: 10%;
     width: 100%;
     justify-content: center;
@@ -16,6 +30,7 @@
     display: flex;
     position: fixed;
     contain: strict;
+    border-top: 0.55px solid var(--divider);
 }
 
 .lemosen-tab {
@@ -58,8 +73,9 @@
     box-sizing: border-box;
     -webkit-user-drag: none;
 }
-.lemosen-tab p{
-    margin: 0;
+
+.lemosen-tab:hover {
+    color: var(--customerMain);
 }
 
 .lemosen-icon {
@@ -130,24 +146,6 @@
     contain: content;
     border: 0;
 }
-.lemosen-bounce{
-    animation: bounceIn  1s linear;
-    -webkit-animation: bounceIn 1s linear;
-    -moz-animation: bounceIn 1s linear;
-    -ms-animation: bounceIn 1s linear;
-}
-.lemosen-fadeOut {
-    animation: bounceOut  1s linear;
-    -webkit-animation: bounceOut 1s linear;
-    -moz-animation: bounceOut 1s linear;
-    -ms-animation: bounceOut 1s linear;
-}
-.lemosen-slideInLeft {
-    animation: slideInLeft  0.5s linear;
-    -webkit-animation: slideInLeft 0.5s linear;
-    -moz-animation: slideInLeft 0.5s linear;
-    -ms-animation: slideInLeft 0.5s linear;
-}
 
 .lemosen-popup-head {
     text-align: center;
@@ -184,23 +182,23 @@
     flex: 1 1 auto;
     min-width: 50%;
     height: 44px;
-    border-top: 1px solid #f4f4f4;
+    border-top: 1px solid var(--light);
     border-right: 0;
     border-left: 0;
     border-bottom: 0;
     font-size: 17px;
-    color: #488aff;
+    color: var(--primary);
     background-color: transparent;
     text-align: center;
 }
 
 .lemosen-popup-sure-button {
-    border-right: 1px solid #f4f4f4;
+    border-right: 1px solid var(--light);
 
 }
 
 .lemosen-popup-cancel-button {
-    border-left: 1px solid #f4f4f4;
+    border-left: 1px solid var(--light);
 
 }
 
@@ -234,10 +232,63 @@
 }
 
 .lemosen-popup-cancel-text {
-    color: #f53d3d;
+    color: var(--danger);
 }
 
 .lemosen-popup-close {
     float: right;
     padding-right: 10px;
+}
+
+.lemosen-toast {
+    left: 10px;
+    right: 10px;
+    margin: auto;
+    border-radius: 14px;
+    display: block;
+    position: absolute;
+    max-width: 700px;
+    z-index: 10;
+    padding: 15px;
+    background: var(--background);
+    justify-content: center;
+    align-items: center;
+}
+
+/**
+    animation
+ */
+.lemosen-bounceIn {
+    animation: bounceIn 1s linear;
+    -webkit-animation: bounceIn 1s linear;
+    -moz-animation: bounceIn 1s linear;
+    -ms-animation: bounceIn 1s linear;
+}
+
+.lemosen-bounceOut {
+    animation: bounceOut 1s linear;
+    -webkit-animation: bounceOut 1s linear;
+    -moz-animation: bounceOut 1s linear;
+    -ms-animation: bounceOut 1s linear;
+}
+
+.lemosen-bounceInUp {
+    animation: bounceInUp 0.5s linear;
+    -webkit-animation: bounceInUp 0.5s linear;
+    -moz-animation: bounceInUp 0.5s linear;
+    -ms-animation: bounceInUp 0.5s linear;
+}
+
+.lemosen-bounceOutDown {
+    animation: bounceOutDown 0.5s linear;
+    -webkit-animation: bounceOutDown 0.5s linear;
+    -moz-animation: bounceOutDown 0.5s linear;
+    -ms-animation: bounceOutDown 0.5s linear;
+}
+
+.lemosen-slideInLeft {
+    animation: slideInLeft 0.5s linear;
+    -webkit-animation: slideInLeft 0.5s linear;
+    -moz-animation: slideInLeft 0.5s linear;
+    -ms-animation: slideInLeft 0.5s linear;
 }

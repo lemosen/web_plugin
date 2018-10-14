@@ -9,14 +9,26 @@
     window.lemosen = (function () {
         return {
             prototype: {
+                delay: 1,
+                position: 'bottom',
+                animationIn: 'lemosen-bounceIn',
+                animationOut: 'lemosen-bounceOut',
                 screenWidth: window.screen.width,
                 screenHeight: window.screen.height,
                 successCallBack: {},
                 modalParam: undefined
             },
+            /**
+             * 只允许唯一弹窗
+             * @returns {boolean}
+             */
             isOnlyPopup: function () {
                 return document.getElementsByClassName('lemosen-popup').length === 0;
             },
+            /**
+             * 统一回调
+             * @param isSuccess
+             */
             popupCallback: function (isSuccess) {
                 if (isSuccess) {
                     lemosen.prototype.modalParam !== undefined ? this.prototype.successCallBack(lemosen.prototype.modalParam)
@@ -26,30 +38,36 @@
                 if (lemosen.prototype.modalParam !== undefined) {
                     this.prototype.successCallBack(lemosen.prototype.modalParam)
                 }
-                document.getElementsByClassName('lemosen-popup-body').item(0).classList.add('lemosen-fadeOut')
+                document.getElementsByClassName('lemosen-popup-body').item(0).classList.add(lemosen.prototype.animationOut)
                 setTimeout(function () {
                     document.getElementsByTagName('body').item(0).removeChild(document.getElementsByClassName('lemosen-popup').item(0))
-                }, 900)
+                }, lemosen.prototype.delay * 1000 - 100);
 
             },
+            /**
+             * 阻止事件触发
+             * @param event
+             */
             stopCloseEvent: function (event) {
                 event.stopPropagation();
             },
             /**
              * 数据格式
              * {
-             * top:100, //框里顶部的距离
-             * title: "tip",
-             * content: "alert test ",
-             * okText: "ok",
-             * cancelText: "cancel",
-             * callback: function (e) {
-             *     alert("i am callback")
-             * }
+             *  top:100, //框里顶部的距离
+             *  title: "tip",
+             *  content: "alert test ",
+             *  okText: "ok",
+             *  cancelText: "cancel",
+             *  callback: function (e) {
+             *      alert("i am callback")
+             *  }
+             *  delay: 1,
+             *  animationIn: 'bounceIn',
+             *  animationOut: 'bounceOut',
              * }
              */
             alert: function () {
-
                 if (!this.isOnlyPopup()) {
                     this.toast();
                     return
@@ -71,11 +89,12 @@
                 if (arguments[0].cancelText === undefined) {
                     arguments[0].cancelText = '取消'
                 }
-                this.prototype.successCallBack = arguments[0].callback
+                lemosen.animationConfig(arguments[0]);
+                this.prototype.successCallBack = arguments[0].callback;
                 var htmlDivElement = document.createElement('div');
                 htmlDivElement.classList.add('lemosen-popup')
                 htmlDivElement.innerHTML =
-                    '<div class="lemosen-popup-body lemosen-bounce" onclick="lemosen.stopCloseEvent(event)">' +
+                    '<div class="lemosen-popup-body ' + lemosen.prototype.animationIn + '" onclick="lemosen.stopCloseEvent(event)">' +
                     '<div class="lemosen-popup-head">' + arguments[0].title + '</div>' +
                     '<div class="lemosen-popup-content">' + arguments[0].content + '</div>' +
                     '<div class="lemosen-popup-buttons">' +
@@ -98,14 +117,42 @@
             },
             /**
              * delay
-             * position
+             * position middle|top|bottom
              * msg
+             * animationIn: 'fadeIn',
+             * animationOut: 'fadeOut',
              */
             toast: function () {
-                // arguments[0].delay
-                // arguments[0].position
-                // arguments[0].msg
-                alert("toast")
+                if (arguments[0].animationIn === undefined) {
+                    arguments[0].animationIn = 'lemosen-bounceInUp'
+                }
+                if (arguments[0].animationOut === undefined) {
+                    arguments[0].animationOut = 'lemosen-bounceOutDown'
+                }
+                lemosen.animationConfig(arguments[0]);
+                var htmlDivElement = document.createElement('div');
+                htmlDivElement.classList.add('lemosen-toast')
+                if (lemosen.prototype.position === 'top') {
+                    htmlDivElement.style.top = '10px'
+                }
+                if (lemosen.prototype.position === 'bottom') {
+                    htmlDivElement.style.bottom = '10px'
+                }
+                if (lemosen.prototype.position === 'middle') {
+                    htmlDivElement.style.top = '50%'
+                }
+                htmlDivElement.classList.add(lemosen.prototype.animationIn)
+                htmlDivElement.innerHTML =
+                    '<div>' + arguments[0].msg + '</div>'
+                var documentFragment = document.createDocumentFragment();
+                documentFragment.appendChild(htmlDivElement);
+                document.getElementsByTagName('body').item(0).appendChild(documentFragment);
+                setTimeout(function () {
+                    document.getElementsByClassName('lemosen-toast').item(0).classList.add(lemosen.prototype.animationOut)
+                    setTimeout(function () {
+                        document.body.removeChild(document.getElementsByClassName('lemosen-toast').item(0))
+                    }, 400)
+                }, lemosen.prototype.delay * 1000)
             },
 
             /**
@@ -119,11 +166,12 @@
                     arguments[0].callback = function () {
                     }
                 }
+                lemosen.animationConfig(arguments[0]);
                 this.prototype.successCallBack = arguments[0].callback;
                 var htmlDivElement = document.createElement('div');
                 htmlDivElement.classList.add('lemosen-popup');
                 htmlDivElement.innerHTML +=
-                    '<div onclick="lemosen.stopCloseEvent(event)" class="lemosen-popup-body  lemosen-bounce" >' +
+                    '<div onclick="lemosen.stopCloseEvent(event)" class="lemosen-popup-body ' + lemosen.prototype.animationIn + '" >' +
                     // '<div class="lemosen-popup-head"><span class="lemosen-popup-close"  onclick="lemosen.modalClose()">X</span></div>' +
                     '<div class="lemosen-popup-content">' + arguments[0].html + '</div>' +
                     '</div>';
@@ -134,136 +182,22 @@
                     lemosen.popupCallback(false)
                 })
             },
+            /**
+             * modal回调参数设置
+             * @param modalParam
+             */
             setModalCallBackParam: function (modalParam) {
                 lemosen.prototype.modalParam = modalParam
             },
-
-            router: {
-                /**
-                 * isCache 是否启用缓存 默认是
-                 * routers
-                 *  path tab1
-                 *  url https://lemosen.github.io/web_plugin/common/tab1.html
-                 *  isIndex true
-                 *  cacheHtml true
-                 * tabs
-                 */
-                routerConfig: {noCache: undefined, routers: [], tabs: []},
-                init: function (routerConfig) {
-                    // document.getElementsByTagName('html').item(0).setAttribute('xmlns','lemosen')
-                    if (routerConfig.noCache) {
-                        lemosen.router.routerConfig.noCache = routerConfig.noCache
-                    } else {
-                        lemosen.router.routerConfig.noCache = false;
-                    }
-                    var rc = [];
-                    for (var i = 0; i < routerConfig.routers.length; i++) {
-                        rc.push({url: routerConfig.routers[i].url, path: routerConfig.routers[i].path, isIndex: routerConfig.routers[i].isIndex, cacheHtml: undefined})
-                    }
-                    lemosen.router.routerConfig.routers = rc;
-                    lemosen.router.routerConfig.tabs = routerConfig.tabs;
-                    window.addEventListener('hashchange', lemosen.router.match)
-                    /**
-                     * tab 操作
-                     * @type {Element}
-                     */
-                    var elementsByTagName = document.getElementsByTagName('lemosen:tabs').item(0);
-
-                    elementsByTagName.classList.add('lemosen-tabs');
-                    var tabsHtml = ''
-                    for (var i = 0; i < routerConfig.tabs.length; i++) {
-                        tabsHtml += ' <a href="#' + routerConfig.tabs[i].path + '" class="lemosen-tab">' +
-                            '<div class="lemosen-icon">' +
-                            '<img src="' + routerConfig.tabs[i].icon + '" width="30" height="30" type="image/svg+xml"' +
-                            '         pluginspage="http://www.adobe.com/svg/viewer/install/"/>' +
-                            '</div>' +
-                            '<span class="lemosen-tab-name">' + routerConfig.tabs[i].name + '</span>' +
-                            '</a>'
-
-                    }
-                    elementsByTagName.innerHTML = tabsHtml;
-
-                    /**
-                     * lemosen content init
-                     * @type {Element}
-                     */
-                    var content = document.getElementsByTagName('lemosen:content').item(0);
-                    var main = document.createElement('div');
-                    var sub = document.createElement('div');
-                    main.style.background = 'white';
-                    main.id = 'main-content';
-                    sub.id = 'sub-content';
-                    sub.style.display = 'none';
-                    main.innerHTML = content.innerHTML;
-                    content.innerHTML = ''
-                    content.appendChild(sub);
-                    content.appendChild(main);
-
-                    var location = window.location;
-                    location.newURL = window.location.href;
-                    lemosen.router.match(location)
-                    // window.addEventListener('load', f)
-                },
-                match: function f(location) {
-                    var isMain = false;
-                    var cacheHtml = false;
-                    var xmlhttp = new XMLHttpRequest();
-                    var url = '';
-                    var routerIndex;
-                    for (var i = 0; i < lemosen.router.routerConfig.routers.length; i++) {
-                        var e = lemosen.router.routerConfig.routers[i];
-                        if (e.path === location.newURL.split('#')[1]) {
-                            routerIndex = i;
-                            url = e.url;
-                            isMain = e.isIndex;
-                            if (e.cacheHtml !== undefined) {
-                                cacheHtml = true;
-                            }
-                            break;
-                        } else if ('' === location.newURL.split('#')[1]) {
-                            routerIndex = i;
-                            url = 'https://lemosen.github.io/web_plugin/common/';
-                            isMain = true;
-                            if (e.cacheHtml !== undefined) {
-                                cacheHtml = true;
-                            }
-                            break;
-                        }
-                    }
-                    var isMainf = function (isMain, html) {
-                        if (isMain) {
-                            document.getElementById('main-content').style.display = 'block';
-                            document.getElementById('sub-content').style.display = 'none';
-                            animation('main-content')
-                        } else {
-                            document.getElementById('sub-content').innerHTML = html;
-                            document.getElementById('main-content').style.display = 'none';
-                            document.getElementById('sub-content').style.display = 'block';
-                            animation('sub-content')
-                        }
-                    };
-                    var animation = function (target) {
-                        document.getElementById(target).classList.add('lemosen-slideInLeft');
-                        setTimeout(function () {
-                            document.getElementById(target).classList.remove('lemosen-slideInLeft')
-                        }, 500)
-                    };
-
-                    if (cacheHtml && !lemosen.router.routerConfig.noCache) {
-                        isMainf(isMain, lemosen.router.routerConfig.routers[routerIndex].cacheHtml)
-                    } else {
-                        xmlhttp.open("GET", url, true); //第三个参数是同步异步,主线程只能异步
-                        xmlhttp.send();
-                        xmlhttp.onreadystatechange = function () {//服务器返回值的处理函数，此处使用匿名函数进行实现
-                            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                                var responseText = xmlhttp.responseText;
-                                lemosen.router.routerConfig.routers[routerIndex].cacheHtml = responseText
-                                isMainf(isMain, responseText)
-                            }
-                        };
-                    }
-
-                }
+            /**
+             * 动画设置
+             * @param config
+             */
+            animationConfig: function (config) {
+                config.delay ? lemosen.prototype.delay = config.delay : lemosen.prototype.delay = 1
+                config.position ? lemosen.prototype.position = config.position : lemosen.prototype.position = 'bottom'
+                config.animationIn ? lemosen.prototype.animationIn = config.animationIn : lemosen.prototype.animationIn = 'lemosen-bounceIn'
+                config.animationOut ? lemosen.prototype.animationOut = config.animationOut : lemosen.prototype.animationOut = 'lemosen-bounceOut'
             }
         }
     })()
