@@ -1,11 +1,4 @@
 (function () {
-    var obj = new Object();
-    Object.defineProperty(obj, 'lemosen1', {
-        configurable: false,
-        writable: true,
-        enumerable: true,
-        value: '张三'
-    })
     window.lemosen = (function () {
         return {
             prototype: {
@@ -91,7 +84,7 @@
                 }
                 lemosen.animationConfig(arguments[0]);
                 this.prototype.successCallBack = arguments[0].callback;
-                var htmlDivElement = document.createElement('div');
+                var htmlDivElement = document.createElement('div'),documentFragment = document.createDocumentFragment();
                 htmlDivElement.classList.add('lemosen-popup')
                 htmlDivElement.innerHTML =
                     '<div class="lemosen-popup-body ' + lemosen.prototype.animationIn + '" onclick="lemosen.stopCloseEvent(event)">' +
@@ -106,7 +99,6 @@
                     '</button>' +
                     '</div>' +
                     '</div>'
-                var documentFragment = document.createDocumentFragment();
                 documentFragment.appendChild(htmlDivElement);
                 document.body.appendChild(documentFragment)
                 document.getElementsByTagName('body').item(0).appendChild(documentFragment);

@@ -18,14 +18,17 @@
             }
             ,
             init: function (routerConfig) {
+                var rc = [], elementsByTagName = document.getElementsByTagName('lemosen:tabs').item(0), tabsHtml = '',
+                    content = document.getElementsByTagName('lemosen:content').item(0), main = document.createElement('div'), sub = document.createElement('div'),
+                    location = window.location;
+
                 document.getElementsByTagName('html').item(0).setAttribute('xmlns', 'lemosen')
                 if (routerConfig.noCache) {
                     lemosen.router.routerConfig.noCache = routerConfig.noCache
                 } else {
                     lemosen.router.routerConfig.noCache = false;
                 }
-                var rc = [];
-                for (var i = 0; i < routerConfig.routers.length; i++) {
+                for (var i = 0, leg = routerConfig.routers.length; i < leg; i++) {
                     rc.push({url: routerConfig.routers[i].url, path: routerConfig.routers[i].path, isIndex: routerConfig.routers[i].isIndex, cacheHtml: undefined})
                 }
                 lemosen.router.routerConfig.routers = rc;
@@ -35,11 +38,9 @@
                  * tab 操作
                  * @type {Element}
                  */
-                var elementsByTagName = document.getElementsByTagName('lemosen:tabs').item(0);
 
                 elementsByTagName.classList.add('lemosen-tabs');
-                var tabsHtml = ''
-                for (var i = 0; i < routerConfig.tabs.length; i++) {
+                for (var i = 0, leg = routerConfig.tabs.length; i < leg; i++) {
                     tabsHtml += ' <a href="#' + routerConfig.tabs[i].path + '" onclick="lemosen.router.clickTab(event)" class="lemosen-tab">' +
                         '<div class="lemosen-icon">' +
                         '<img src="' + routerConfig.tabs[i].icon + '" type="image/svg+xml"' +
@@ -55,9 +56,6 @@
                  * lemosen content init
                  * @type {Element}
                  */
-                var content = document.getElementsByTagName('lemosen:content').item(0);
-                var main = document.createElement('div');
-                var sub = document.createElement('div');
                 main.classList.add('lemosen-main-content');
                 sub.classList.add('lemosen-sub-content');
                 main.innerHTML = content.innerHTML;
@@ -65,7 +63,6 @@
                 content.appendChild(sub);
                 content.appendChild(main);
 
-                var location = window.location;
                 location.newURL = window.location.href;
                 lemosen.router.match(location)
                 // window.addEventListener('load', f)
@@ -79,15 +76,27 @@
                 // event.target.setAttribute('src', event.target.getAttribute('src').replace('.svg', '_on.svg'));
             },
             match: function (location) {
-                var isMain = false;
-                var cacheHtml = false;
-                var xmlhttp = new XMLHttpRequest();
-                var url = '';
-                var routerIndex;
+                var isMain = false, cacheHtml = false, xmlhttp = new XMLHttpRequest(), url = '', routerIndex, isMainf = function (isMain, html) {
+                    if (isMain) {
+                        document.getElementsByClassName('lemosen-main-content').item(0).style.display = 'block';
+                        document.getElementsByClassName('lemosen-sub-content').item(0).style.display = 'none';
+                        animation('lemosen-main-content')
+                    } else {
+                        document.getElementsByClassName('lemosen-sub-content').item(0).innerHTML = html;
+                        document.getElementsByClassName('lemosen-main-content').item(0).style.display = 'none';
+                        document.getElementsByClassName('lemosen-sub-content').item(0).style.display = 'block';
+                        animation('lemosen-sub-content')
+                    }
+                }, animation = function (target) {
+                    document.getElementsByClassName(target).item(0).classList.add('lemosen-slideInLeft');
+                    setTimeout(function () {
+                        document.getElementsByClassName(target).item(0).classList.remove('lemosen-slideInLeft')
+                    }, 500)
+                };
                 if (location.newURL.split('#')[1] === undefined) {
                     location.newURL += "#"
                 }
-                for (var i = 0; i < lemosen.router.routerConfig.routers.length; i++) {
+                for (var i = 0, leg = lemosen.router.routerConfig.routers.length; i < leg; i++) {
                     var e = lemosen.router.routerConfig.routers[i];
                     if (e.path === location.newURL.split('#')[1]) {
                         routerIndex = i;
@@ -108,26 +117,6 @@
                     }
                 }
 
-
-                var isMainf = function (isMain, html) {
-                    if (isMain) {
-                        document.getElementsByClassName('lemosen-main-content').item(0).style.display = 'block';
-                        document.getElementsByClassName('lemosen-sub-content').item(0).style.display = 'none';
-                        animation('lemosen-main-content')
-                    } else {
-                        document.getElementsByClassName('lemosen-sub-content').item(0).innerHTML = html;
-                        document.getElementsByClassName('lemosen-main-content').item(0).style.display = 'none';
-                        document.getElementsByClassName('lemosen-sub-content').item(0).style.display = 'block';
-                        animation('lemosen-sub-content')
-                    }
-                };
-                var animation = function (target) {
-                    document.getElementsByClassName(target).item(0).classList.add('lemosen-slideInLeft');
-                    setTimeout(function () {
-                        document.getElementsByClassName(target).item(0).classList.remove('lemosen-slideInLeft')
-                    }, 500)
-                };
-
                 if (cacheHtml && !lemosen.router.routerConfig.noCache) {
                     isMainf(isMain, lemosen.router.routerConfig.routers[routerIndex].cacheHtml)
                 } else {
@@ -145,4 +134,4 @@
             }
         }
     })()
-})()
+})();
