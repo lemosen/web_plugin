@@ -203,7 +203,6 @@
     };
     Dv.prototype.initFile = function () {
         var file = $('file').files[0];
-        alert("准备加载");
         if (!file) {
             alert("请选择一个MP4视频文件");
             return false;
@@ -212,7 +211,6 @@
         var buffer = [];
         var that = this;
         reader.onload = function () {
-            alert("加载完成");
             var blob = new Blob([reader.result], {type: 'video/mp4'});
             that.playFile(reader.result, blob);
         }
@@ -220,7 +218,7 @@
     };
     Dv.prototype.playFile = function (arrayBuffer, blob) {
         var mediaSource = new MediaSource();
-        src = URL.createObjectURL(blob);
+        var src = URL.createObjectURL(blob);
         this.initVideo(src);
         this.interval();
         this.video.play();
