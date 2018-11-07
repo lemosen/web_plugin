@@ -219,6 +219,7 @@
     Dv.prototype.playFile = function (arrayBuffer, blob) {
         var mediaSource = new MediaSource();
         var src = URL.createObjectURL(blob);
+        alert(src)
         this.initVideo(src);
         this.interval();
         this.video.play();
