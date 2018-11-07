@@ -168,6 +168,7 @@
         var that = this;
         requestAnimationFrame(function () {
             if (!that.video.paused) {
+                alert("drawText");
                 that.ctx.drawImage(that.video, 0, 0, that.width, that.height);
                 var data = that.loadData();
                 that.reDraw(data);
@@ -218,7 +219,6 @@
     Dv.prototype.playFile = function (arrayBuffer, blob) {
         var mediaSource = new MediaSource();
         var src = URL.createObjectURL(blob);
-        alert(src);
         this.initVideo(src);
         this.interval();
         this.video.play();
