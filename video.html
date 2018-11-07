@@ -85,6 +85,8 @@
     <canvas id="textCanvas"></canvas>
 </div>
 <script type="text/javascript">
+    'use strict';
+
     function $(id) {
         return document.getElementById(id);
     }
@@ -139,9 +141,8 @@
                 b = data.data[i + 2];
             data.data[i] = data.data[i + 1] = data.data[i + 2] = 255 - (r + g + b) / 3 | 0;
         }
-        this.data = data
+        this.data = data;
         this.ctx.putImageData(data, 0, 0, 0, 0, this.width, this.height);
-
     };
 
     Dv.prototype.drawText = function () {
@@ -157,12 +158,10 @@
             var y = yl * this.space;
             var newData = data[i] | 0;
             var plen = Math.ceil(255 / points.length);
-            var point = points[newData / plen | 0]
+            var point = points[newData / plen | 0];
             this.textCtx.font = "12px courier";
             this.textCtx.fillText(point, x, y);
-
         }
-
     };
 
     Dv.prototype.interval = function () {
@@ -192,14 +191,14 @@
             } else {
                 alert("仅支持MP4格式");
             }
-        }
+        };
         $('videoScreen').onclick = function () {
             if ($('ctrl').style.display == 'none') {
                 $('ctrl').style.display = 'block';
             } else {
                 $('ctrl').style.display = 'none';
             }
-        }
+        };
     };
     Dv.prototype.initFile = function () {
         var file = $('file').files[0];
@@ -211,15 +210,15 @@
         var buffer = [];
         var that = this;
         reader.onload = function () {
-            var blob = new Blob([reader.result], {type: 'video/mp4'});
+            var blob = new Blob([reader.result], { type: 'video/mp4' });
             that.playFile(reader.result, blob);
-        }
+        };
         reader.readAsArrayBuffer(file);
     };
     Dv.prototype.playFile = function (arrayBuffer, blob) {
         var mediaSource = new MediaSource();
         var src = URL.createObjectURL(blob);
-        alert(src)
+        alert(src);
         this.initVideo(src);
         this.interval();
         this.video.play();
