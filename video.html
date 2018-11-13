@@ -168,7 +168,6 @@
         var that = this;
         requestAnimationFrame(function () {
             if (!that.video.paused) {
-                alert("drawText");
                 that.ctx.drawImage(that.video, 0, 0, that.width, that.height);
                 var data = that.loadData();
                 that.reDraw(data);
